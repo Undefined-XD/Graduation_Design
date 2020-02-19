@@ -1,25 +1,16 @@
-// pages/index/index.js
+// pages/quoteResult/quoteResult.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    imgUrls: ['/src/img/p1.jpg','/src/img/p2.jpg','/src/img/p3.jpg','/src/img/p4.jpg']
+
   },
 
-  /**
-   * 跳转报价页面
-   */
-  jumpToQuoteOptions: function () {
-    wx.navigateTo({
-      url: '/pages/quoteOptions/quoteOptions',
-      success: function() {
-        console.log('jumpToQuote success')
-      },
-      fail: function() {
-        console.log('jumToQuote fail')
-      }
+  jumpToQuoteOptions: function (e) {
+    wx.navigateBack({
+      delta: 1
     })
   },
 

@@ -1,7 +1,6 @@
 // pages/main/quote.js
 import Dialog from '@vant/weapp/dialog/dialog'
 
-
 Page({
   /**
    * 页面的初始数据
@@ -83,8 +82,12 @@ Page({
     Dialog.confirm({
       // context: this,
       title: '提示',
-      message: '是否确认提交信息？'
-    }).then(() => { }).catch(() => { })
+      message: '确认提交信息？'
+    }).then(() => { 
+      wx.navigateTo({
+        url: '../quoteResult/quoteResult'
+      })
+    }).catch(() => { })
   },
 
   /**

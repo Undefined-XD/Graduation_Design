@@ -1,0 +1,184 @@
+/* pages/quoteResult/quoteResult.wxss */
+/* 包裹层 */
+.wraper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #4a4b47;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 报价单整体 */
+.result__container {
+  position: relative;
+  /* top: 100rpx; */
+  width: 650rpx;
+  /* height: 800rpx; */
+}
+
+/* 报价单主标题 */
+.result__main-title {
+  position: relative;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  font-size: 36rpx;
+  text-align: center;
+  border-radius: 10rpx;
+  border-bottom: 1rpx solid #4a4b47;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #ffffff;
+}
+
+/* 报价单首部 */
+.result__header {
+  position: relative;
+  box-sizing: border-box;
+  padding: 40rpx;
+  width: 100%;
+  border-bottom: 2rpx dotted #4a4b47;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background-color: #ffffff;
+}
+
+/* 报价单首部标题 */
+.result__title {
+  margin: 12rpx 0;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+/* 报价查询时间、查询方式 */
+.result__time,
+.result__method {
+  margin: 4rpx 0;
+  font-size: 28rpx;
+}
+
+.result__time text,
+.result__method text {
+  font-weight: 300;
+}
+
+/* 报价单具体内容 */
+.result__detail {
+  position: relative;
+  box-sizing: border-box;
+  padding: 50rpx;
+  width: 100%;
+  border-top: 2rpx dotted #4a4b47;
+  font-size: 28rpx;
+  background-color: #ffffff;
+}
+
+/* 报价单下划线 */
+.result__detail .underline {
+  line-height: 60rpx;
+  border-bottom: 2rpx solid #000000;
+}
+
+/* 报价单总价 */
+.result__amount {
+  position: relative;
+  width: 100%;
+  height: 140rpx;
+  border-radius: 10rpx;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #6dbc7e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result__amount::before,
+.result__amount::after {
+  position: absolute;
+  top: 50%;
+  content: '';
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 20rpx;
+  background-color: #4a4b47;
+}
+
+.result__amount::before {
+  transform: translate(-325rpx, -50%);
+}
+.result__amount::after {
+  transform: translate(325rpx, -50%);
+}
+
+/* 价格样式 */
+.result__amount .price {
+  color: #ffffff;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+/* 注意事项 */
+.result__note {
+  position: relative;
+  margin: 20rpx 0 40rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 注意事项标题 */
+.result__note .note-title {
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #77c988;
+  font-size: 24rpx;
+  font-weight: 300;
+}
+
+/* 注意事项标题横杠 */
+.result__note .note-title::before,
+.result__note .note-title::after {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50rpx);
+  content: '';
+  width: 220rpx;
+  height: 2rpx;
+  background-color: #6dbc7e;
+}
+
+.result__note .note-title::before {
+  left: 0;
+}
+
+.result__note .note-title::after {
+  right: 0;
+}
+
+/* 注意事项列表 */
+.result__note .note-list {
+  width: 100%;
+  display: flex; 
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* 注意事项内容 */
+.result__note .note-item {
+  margin-bottom: 20rpx;
+  color: #ffffff;
+  font-size: 24rpx;
+  font-weight: 300;
+}
+
+/* 按钮组 */
+.buttons {
+  /* margin-top: 20rpx; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

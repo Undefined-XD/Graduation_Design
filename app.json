@@ -2,7 +2,8 @@
   "pages": [
     "pages/tabBar/index/index",
     "pages/tabBar/me/me",
-    "pages/main/quote"
+    "pages/quoteOptions/quoteOptions",
+    "pages/quoteResult/quoteResult"
   ],
   "window": {
     "backgroundTextStyle": "light",
