@@ -1,0 +1,28 @@
+<!-- pages/index/index.wxml -->
+<!-- 画册轮播图 -->
+<swiper class="swiper" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" indicator-active-color="#ffffff" interval="4000">
+  <block wx:for="{{imgUrls}}" wx:key="item" wx:for-item="url">
+    <swiper-item>
+      <image src="{{url}}" class="swiper__item-img" />
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 报价入口 -->
+<view class="quote-entry">
+  <view class="quote-entry__btn">
+    <van-button bind:click="jumpToQuote" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
+      查询报价
+    </van-button>
+  </view>
+  <view class="quote-entry__history">
+    <view class="quote-entry__history-left">
+      <text selectable="{{false}}">历史搜索记录:</text>
+    </view>
+    <view class="quote-entry__history-right">
+      <block>
+        <text class="quote-entry__history-item">记录1</text>
+        <text class="quote-entry__history-item">记录2</text>
+      </block>
+    </view>
+  </view>
+</view>

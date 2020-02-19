@@ -1,0 +1,68 @@
+/* pages/index/index.wxss */
+/* 轮播图容器 */
+.swiper {
+  width: 100%;
+  height: 500rpx;
+}
+
+/* 轮播图图片 */
+.swiper__item-img {
+  position: relative;
+  width: 100%;
+  height: 500rpx;
+}
+
+/* 报价入口 */
+.quote-entry {
+  position: relative;
+  margin-top: 150rpx;
+  width: 100%;
+  height: 200rpx;
+  /* background-color: aqua; */
+}
+
+/* 报价入口按钮 */
+.quote-entry__btn {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 报价历史 */
+.quote-entry__history {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+  width: 100%;
+  height: 50rpx;
+  display: flex;
+}
+
+/* 报价历史记录左侧 */
+.quote-entry__history-left {
+  position: relative;
+  margin-right: 10rpx;
+  width: 180rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 24rpx;
+}
+
+/* 报价历史记录右侧 */
+.quote-entry__history-right {
+  position: relative;
+  width: 600rpx;
+  height: 50rpx;
+  /* background: yellow; */
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+/* 报价历史条目 */
+.quote-entry__history-item {
+  margin: 0 10rpx;
+  font-size: 24rpx;
+  color: gray;
+}

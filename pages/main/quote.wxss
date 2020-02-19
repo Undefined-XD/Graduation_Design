@@ -1,0 +1,90 @@
+/* pages/main/quote.wxss */
+/* 主标题 */
+.title {
+  position: relative;
+  padding: 30rpx 30rpx;
+  width: 100%;
+  height: 120rpx;
+  line-height: 60rpx;
+  color: blue;
+  font-size: 40rpx;
+  /* background-color: red; */
+  box-sizing: border-box;
+}
+
+/* 报价选项类型 */
+.options {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30rpx;
+  /* background-color: green; */
+}
+
+/* 选项标题 */
+.options__title {
+  position: relative;
+  padding-left: 40rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: blue;
+  box-sizing: border-box;
+}
+
+/* 选项内容 */
+.options__paper,
+.options__fold-times,
+.options__quantity,
+.options__book-binding,
+.options__delivery {
+  padding: 20rpx;
+}
+
+/* 选项边距 */
+.options__paper van-button,
+.options__fold-times van-button,
+.options__book-binding van-button,
+.options__delivery van-button {
+  margin: 0 10rpx 10rpx;
+}
+
+/* 选项数量补充 */
+.options__quantity {
+  padding: 20rpx 4rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 选项数量左侧 */
+.options__quantity-left {
+  line-height: 60rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* 选项数量右侧 */
+.options__quantity-right {
+  line-height: 60rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* 提交按钮 */
+.submit__button {
+  position: relative;
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* 遮罩层对话框 */
+.overlay__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
