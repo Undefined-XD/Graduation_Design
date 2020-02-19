@@ -1,18 +1,50 @@
 // pages/me/me.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    // 用户头像 url
+    avatarURL: '',
+    // 用户名称
+    userName: '',
+    // 用户评分
+    rateValue: 5,
+    // 评分范围
+    rateRange: 5,
+    // 是否显示评分栏
+    showRate: false
+  },
 
+  // 是否显示评分栏
+  showRate: function (e) {
+    this.setData({
+      showRate: !this.data.showRate
+    })
+  },
+
+  // 用户打分
+  checkRate: function (e) {
+    this.setData({
+      rateValue: e.detail
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const appData = app.globalData
+    const avatarURL = appData.userInfo.avatarUrl
+    const userName = appData.userInfo.nickName
 
+    this.setData({
+      avatarURL,
+      userName
+    })
   },
 
   /**

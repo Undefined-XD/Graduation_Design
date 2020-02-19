@@ -10,7 +10,7 @@
 <!-- 报价入口 -->
 <view class="quote-entry">
   <view class="quote-entry__btn">
-    <van-button bind:click="jumpToQuoteOptions" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
+    <van-button open-type="getUserInfo" bindgetuserinfo="userInfo" bind:click="jumpToQuoteOptions" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
       查询报价
     </van-button>
   </view>

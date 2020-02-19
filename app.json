@@ -16,17 +16,20 @@
     "van-button": "@vant/weapp/button",
     "van-stepper": "@vant/weapp/stepper",
     "van-overlay": "@vant/weapp/overlay",
-    "van-dialog": "@vant/weapp/dialog"
+    "van-dialog": "@vant/weapp/dialog",
+    "van-image": "@vant/weapp/image/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-rate": "@vant/weapp/rate/index"
   },
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/tabBar/index/index",
-        "text": "报价"
+        "text": "首页"
       },
       {
         "pagePath": "pages/tabBar/me/me",
-        "text": "我"
+        "text": "个人中心"
       }
     ]
   }

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: ['/src/img/p1.jpg','/src/img/p2.jpg','/src/img/p3.jpg','/src/img/p4.jpg']
+    imgUrls: ['/src/img/p1.jpg', '/src/img/p2.jpg', '/src/img/p3.jpg', '/src/img/p4.jpg']
   },
 
   /**
@@ -14,10 +14,10 @@ Page({
   jumpToQuoteOptions: function () {
     wx.navigateTo({
       url: '/pages/quoteOptions/quoteOptions',
-      success: function() {
+      success: function () {
         console.log('jumpToQuote success')
       },
-      fail: function() {
+      fail: function () {
         console.log('jumToQuote fail')
       }
     })

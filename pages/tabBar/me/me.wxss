@@ -1,1 +1,101 @@
 /* pages/me/me.wxss */
+/* 个人中心包裹层 */
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #f2f3f7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 头部蓝色背景 */
+.wrapper::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 180rpx;
+  border-bottom-left-radius: 30rpx;
+  border-bottom-right-radius: 30rpx;
+  background-color: #2d83f7;
+}
+
+/* 个人中心头部 */
+.user__top {
+  position: relative;
+  margin-top: 50rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  width: 650rpx;
+  height: 200rpx;
+  border-radius: 14rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* 个人中心用户头像 */
+.user__avatar {
+  position: relative;
+  margin-right: 20rpx;
+  width: 120rpx;
+  height: 120rpx;
+}
+
+/* 用户信息 */
+.user__info {
+  padding: 20rpx 0;
+  box-sizing: border-box;
+  flex-grow: 1;
+  height: 120rpx;
+  line-height: 40rpx;
+}
+
+/* 用户昵称 */
+.user-name {
+  font-weight: bold;
+}
+
+/* 用户权限 */
+.user-authority {
+  font-size: 20rpx;
+}
+
+/* 用户功能 */
+.user__functions {
+  position: relative;
+  margin-top: 20rpx;
+  padding: 10rpx;
+  box-sizing: border-box;
+  width: 650rpx;
+  /* height: 600rpx; */
+  border-radius: 14rpx;
+  background-color: #ffffff;
+}
+
+/* 用户评分 */
+.user__rate {
+  position: relative;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  width: 650rpx;
+  border-radius: 14rpx;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+}
+
+/* 用户功能项自定义高度 */
+.van-cell-height {
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+}
+
+/* 用户功能项自定义标题文字行高 */
+.van-cell-title {
+  line-height: 60rpx;
+}
