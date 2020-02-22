@@ -7,6 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    // 权限
+    authority: 'admin',
     // 用户头像 url
     avatarURL: '',
     // 用户名称
@@ -30,6 +32,20 @@ Page({
   checkRate: function (e) {
     this.setData({
       rateValue: e.detail
+    })
+  },
+
+  http: function (e) {
+    console.log('http 请求')
+    wx.request({
+      url: 'http://localhost:8080/',
+      method: 'get',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function(res) {
+        console.log('http res:', res)
+      }
     })
   },
 

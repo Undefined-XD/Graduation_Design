@@ -1,0 +1,57 @@
+<!-- pages/functions/setParams/setParams.wxml -->
+<view class="setting">
+  <view class="setting__cell">
+    <!-- 纸张类型和报价 -->
+    <block wx:for="{{paperArr}}" wx:key="item">
+      <van-swipe-cell right-width="{{ 120 }}">
+        <van-cell-group>
+          <van-cell title="{{item.paper}}" value="单价{{item.price}}" />
+        </van-cell-group>
+        <view slot="right" class="van-swipe-cell__right">
+          <view class="edit-btn">修改</view>
+          <view class="delete-btn">删除</view>
+        </view>
+      </van-swipe-cell>
+    </block>
+    <view class="setting__add">
+      <van-button icon="plus" size="small" plain round type="info"></van-button>
+    </view>
+  </view>
+  <!-- 可供选择的开数 -->
+  <block wx:for="{{foldTimesArr}}" wx:key="item">
+    <van-swipe-cell right-width="{{ 120 }}">
+      <van-cell-group>
+        <van-cell title="{{}}" value="{{item}}" />
+      </van-cell-group>
+      <view slot="right" class="van-swipe-cell__right">
+        <view class="edit-btn">修改</view>
+        <view class="delete-btn">删除</view>
+      </view>
+    </van-swipe-cell>
+  </block>
+  <!-- 可供选择的装订方式 -->
+  <block wx:for="{{bookBindingArr}}" wx:key="item">
+    <van-swipe-cell right-width="{{ 120 }}">
+      <van-cell-group>
+        <van-cell title="{{}}" value="{{item}}" />
+      </van-cell-group>
+      <view slot="right" class="van-swipe-cell__right">
+        <view class="edit-btn">修改</view>
+        <view class="delete-btn">删除</view>
+      </view>
+    </van-swipe-cell>
+  </block>
+  <!-- 可供选择的装订方式 -->
+  <block wx:for="{{deliveryArr}}" wx:key="item">
+    <van-swipe-cell right-width="{{ 120 }}">
+      <van-cell-group>
+        <van-cell title="{{}}" value="{{item}}" />
+      </van-cell-group>
+      <view slot="right" class="van-swipe-cell__right">
+        <view class="edit-btn">修改</view>
+        <view class="delete-btn">删除</view>
+      </view>
+    </van-swipe-cell>
+  </block>
+</view>
+<!-- <button bindtap="http">http</button> -->

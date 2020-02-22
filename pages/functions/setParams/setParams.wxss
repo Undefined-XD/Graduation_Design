@@ -1,0 +1,41 @@
+/* pages/functions/setParams/setParams.wxss */
+/* 设置组 */
+.setting__cell {
+  position: relative;
+  margin-bottom: 20rpx;
+}
+
+/* 添加按钮 */
+.setting__add {
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* 右侧插槽样式 */
+.van-swipe-cell__right {
+  width: 120px;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 编辑按钮 */
+.edit-btn {
+  width: 60px;
+  height: 88rpx;
+  background-color: #57bd6b;
+}
+
+/* 删除按钮 */
+.delete-btn {
+  width: 60px;
+  height: 88rpx;
+  background-color: #dc3131;
+}

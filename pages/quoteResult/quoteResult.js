@@ -1,13 +1,23 @@
 // pages/quoteResult/quoteResult.js
+// 使用 npm 第三方时间格式化模块
+const time = require('time-formater')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    paper: '',
+    foldTimes: '',
+    pages: '',
+    albums: '',
+    bookBinding: '',
+    delivery: '',
+    quoteTime: ''
   },
 
+  // 返回报价选项页
   jumpToQuoteOptions: function (e) {
     wx.navigateBack({
       delta: 1
@@ -18,7 +28,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取当前时间
+    let now = time().format('YYYY-MM-DD HH:mm:ss')
+    // 获取缓存好的最近一次报价选项
+    const quoteOptions = wx.getStorageSync('latestQuote')
+    // 报价选项绑定到当前页面
+    this.setData({
+      paper: quoteOptions.paper,
+      foldTimes: quoteOptions.foldTimes, 
+      pages: quoteOptions.pages,
+      albums: quoteOptions.albums,
+      bookBinding: quoteOptions.bookBinding,
+      delivery: quoteOptions.delivery,
+      quoteTime: now
+    })
 
+    
   },
 
   /**

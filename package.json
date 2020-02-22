@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vant/weapp": "^1.0.5"
+    "@vant/weapp": "^1.0.5",
+    "time-formater": "^1.1.3"
   }
 }

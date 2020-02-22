@@ -11,7 +11,7 @@
       <view class="result__title">精美画册</view>
       <view class="result__time">
         查询时间：
-        <text>2020-02-19 10:10:10</text>
+        <text>{{quoteTime}}</text>
       </view>
       <view class="result__method">
         查询方式：
@@ -21,17 +21,17 @@
     <!-- 报价单具体内容 -->
     <view class="result__detail">
       印刷选项：
-      <text class="underline">牛皮纸</text>
+      <text class="underline">{{paper}}</text>
       ，
-      <text class="underline">16</text>
+      <text class="underline">{{foldTimes}}</text>
       开，每册
-      <text class="underline">128</text>
+      <text class="underline">{{pages}}</text>
       页，共
-      <text class="underline">10000</text>
+      <text class="underline">{{albums}}</text>
       册，采用
-      <text class="underline">无线胶装</text>
+      <text class="underline">{{bookBinding}}</text>
       ，
-      <text class="underline">寄送</text>
+      <text class="underline">{{delivery}}</text>
       取货。
     </view>
     <!-- 报价单总价 -->

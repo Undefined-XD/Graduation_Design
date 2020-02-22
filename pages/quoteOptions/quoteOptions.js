@@ -84,6 +84,17 @@ Page({
       title: '提示',
       message: '确认提交信息？'
     }).then(() => { 
+      let that = this.data.options
+      // 将最近一次查询记录的选项存入缓存，供报价单展示选项信息
+      wx.setStorageSync('latestQuote', {
+        paper: that.paper,
+        foldTimes: that.foldTimes,
+        pages: that.pages,
+        albums: that.albums,
+        bookBinding: that.bookBinding,
+        delivery: that.delivery
+      })
+      // 跳转报价结果
       wx.navigateTo({
         url: '../quoteResult/quoteResult'
       })

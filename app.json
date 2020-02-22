@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/functions/setParams/setParams",
     "pages/tabBar/index/index",
     "pages/tabBar/me/me",
     "pages/quoteOptions/quoteOptions",
@@ -19,7 +20,10 @@
     "van-dialog": "@vant/weapp/dialog",
     "van-image": "@vant/weapp/image/index",
     "van-cell": "@vant/weapp/cell/index",
-    "van-rate": "@vant/weapp/rate/index"
+    "van-cell-grop": "@vant/weapp/cell-group/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index"
   },
   "tabBar": {
     "list": [

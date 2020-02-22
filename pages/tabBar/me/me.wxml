@@ -11,21 +11,35 @@
       <text class="user-authority">用户/管理员</text>
     </view>
   </view>
-  <!-- 个人中心功能 -->
-  <view class="user__functions">
-    <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="查询记录" is-link></van-cell>
-    <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="企业信息" is-link></van-cell>
-    <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="了解更多" is-link></van-cell>
-    <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="问题反馈" border="{{false}}" is-link></van-cell>
-  </view>
-  <!-- 个人中心功能 -->
-  <view class="user__functions">
-    <van-cell bind:click="showRate" custom-class="van-cell-height van-cell-underline" title-class="van-cell-title" title="体验评分" border="{{false}}" arrow-direction="down" is-link></van-cell>
-  </view>
-  <!-- 用户评分 -->
-  <block wx:if="{{showRate}}">
-    <view class="user__rate">
-      <van-rate bind:change="checkRate" value="{{rateValue}}" count="{{rateRange}}" size="26"></van-rate>
+  <!-- 用户权限功能区 -->
+  <block wx:if="{{authority === 'user'}}">
+    <!-- 个人中心功能 -->
+    <view class="user__functions">
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="查询记录" is-link></van-cell>
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="企业信息" is-link></van-cell>
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="了解更多" is-link></van-cell>
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="问题反馈" border="{{false}}" is-link></van-cell>
+    </view>
+    <!-- 个人中心功能 -->
+    <view class="user__functions">
+      <van-cell bind:click="showRate" custom-class="van-cell-height van-cell-underline" title-class="van-cell-title" title="体验评分" border="{{false}}" arrow-direction="down" is-link></van-cell>
+    </view>
+    <!-- 用户评分 -->
+    <block wx:if="{{showRate}}">
+      <view class="user__rate">
+        <van-rate bind:change="checkRate" value="{{rateValue}}" count="{{rateRange}}" size="26"></van-rate>
+      </view>
+    </block>
+  </block>
+  <!-- 管理员权限功能区 -->
+  <block wx:elif="{{authority === 'admin'}}">
+    <!-- 个人中心功能 -->
+    <view class="user__functions">
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="查询记录" is-link></van-cell>
+      <van-cell url="/pages/functions/setParams/setParams" custom-class="van-cell-height" title-class="van-cell-title" title="参数设置" is-link></van-cell>
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="企业信息" is-link></van-cell>
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="问题反馈" border="{{false}}" is-link></van-cell>
     </view>
   </block>
 </view>
+<!-- <button bindtap="http">http</button> -->
