@@ -1,13 +1,35 @@
 /* pages/functions/setParams/setParams.wxss */
+/* 设置页 */
+.setting {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #f7f8fa;
+}
+
 /* 设置组 */
 .setting__cell {
   position: relative;
   margin-bottom: 20rpx;
 }
 
+/* 设置分组标题 */
+.setting__title {
+  width: 100%;
+  height: 80rpx;
+}
+
+/* van-divider 样式重写 */
+.setting__title .van-divider {
+  margin: 0;
+  padding: 0;
+  height: 80rpx;
+}
+
 /* 添加按钮 */
 .setting__add {
   position: relative;
+  margin-top: 30rpx;
   width: 100%;
   height: 80rpx;
   display: flex;

@@ -1,27 +1,26 @@
 <!-- pages/functions/setParams/setParams.wxml -->
 <view class="setting">
   <view class="setting__cell">
+    <view class="setting__title">
+      <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">
+        纸张
+      </van-divider>
+    </view>
     <!-- 纸张类型和报价 -->
     <block wx:for="{{paperArr}}" wx:key="item">
-      <van-swipe-cell right-width="{{ 120 }}">
-        <van-cell-group>
-          <van-cell title="{{item.paper}}" value="单价{{item.price}}" />
-        </van-cell-group>
-        <view slot="right" class="van-swipe-cell__right">
-          <view class="edit-btn">修改</view>
-          <view class="delete-btn">删除</view>
-        </view>
-      </van-swipe-cell>
+      <van-cell title="{{item.paper}}" is-link />
     </block>
-    <view class="setting__add">
-      <van-button icon="plus" size="small" plain round type="info"></van-button>
-    </view>
   </view>
-  <!-- 可供选择的开数 -->
-  <block wx:for="{{foldTimesArr}}" wx:key="item">
+  <view class="setting__title">
+    <van-divider contentPosition="center" customStyle="color: #1989fa;border-color: #1989fa;font-size: 18px;">
+      其他
+    </van-divider>
+  </view>
+  <!-- 其他设置 -->
+  <block wx:for="{{settingArr}}" wx:key="item">
     <van-swipe-cell right-width="{{ 120 }}">
       <van-cell-group>
-        <van-cell title="{{}}" value="{{item}}" />
+        <van-cell title="{{item.settingNagme}}" value="{{item.cost}}元" />
       </van-cell-group>
       <view slot="right" class="van-swipe-cell__right">
         <view class="edit-btn">修改</view>
@@ -29,29 +28,8 @@
       </view>
     </van-swipe-cell>
   </block>
-  <!-- 可供选择的装订方式 -->
-  <block wx:for="{{bookBindingArr}}" wx:key="item">
-    <van-swipe-cell right-width="{{ 120 }}">
-      <van-cell-group>
-        <van-cell title="{{}}" value="{{item}}" />
-      </van-cell-group>
-      <view slot="right" class="van-swipe-cell__right">
-        <view class="edit-btn">修改</view>
-        <view class="delete-btn">删除</view>
-      </view>
-    </van-swipe-cell>
-  </block>
-  <!-- 可供选择的装订方式 -->
-  <block wx:for="{{deliveryArr}}" wx:key="item">
-    <van-swipe-cell right-width="{{ 120 }}">
-      <van-cell-group>
-        <van-cell title="{{}}" value="{{item}}" />
-      </van-cell-group>
-      <view slot="right" class="van-swipe-cell__right">
-        <view class="edit-btn">修改</view>
-        <view class="delete-btn">删除</view>
-      </view>
-    </van-swipe-cell>
-  </block>
+  <view class="setting__add">
+    <van-button icon="plus" size="small" round type="info"></van-button>
+  </view>
 </view>
 <!-- <button bindtap="http">http</button> -->

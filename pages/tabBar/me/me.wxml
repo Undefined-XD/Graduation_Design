@@ -4,10 +4,13 @@
   <!-- 个人中心头部 -->
   <view class="user__top">
     <view class="user__avatar">
-      <van-image src="{{avatarURL}}" round width="120rpx" height="120rpx" />
+      <!-- <van-image src="{{avatarURL}}" round width="120rpx" height="120rpx" /> -->
+      <open-data type="userAvatarUrl" />
     </view>
     <view class="user__info">
-      <text class="user-name">{{userName}}\n</text>
+      <view class="user__name">
+        <open-data type="userNickName" />
+      </view>
       <text class="user-authority">用户/管理员</text>
     </view>
   </view>

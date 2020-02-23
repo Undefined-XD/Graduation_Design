@@ -43,7 +43,7 @@ Page({
       header: {
         'Content-Type': 'application/json'
       },
-      success: function(res) {
+      success: function (res) {
         console.log('http res:', res)
       }
     })
@@ -54,6 +54,7 @@ Page({
    */
   onLoad: function (options) {
     const appData = app.globalData
+    console.log(appData)
     const avatarURL = appData.userInfo.avatarUrl
     const userName = appData.userInfo.nickName
 

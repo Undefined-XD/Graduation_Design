@@ -37,44 +37,44 @@ Page({
 
   // 选择纸张类型
   checkPaper: function (e) {
-    let paperType = e.target.dataset.paper
+    const paperType = e.target.dataset.paper
     this.setData({
-      ['options.paper']: paperType
+      'options.paper': paperType
     })
   },
   // 选择开数
   checkFoldTimes: function (e) {
-    let foldTimes = e.target.dataset.foldtimes
+    const foldTimes = e.target.dataset.foldtimes
     this.setData({
-      ['options.foldTimes']: foldTimes
+      'options.foldTimes': foldTimes
     })
   },
   // 选择页数
   checkPages: function (e) {
-    let pages = e.detail
+    const pages = e.detail
     this.setData({
-      ['options.pages']: pages
+      'options.pages': pages
     })
   },
   // 选择册数
   checkAlbums: function (e) {
-    let albums = e.detail
+    const albums = e.detail
     this.setData({
-      ['options.albums']: albums
+      'options.albums': albums
     })
   },
   // 选择装订类型
   checkBookBinding: function (e) {
-    let bookBinding = e.target.dataset.bookbinding
+    const bookBinding = e.target.dataset.bookbinding
     this.setData({
-      ['options.bookBinding']: bookBinding
+      'options.bookBinding': bookBinding
     })
   },
   // 选择寄送类型
   checkDelivery: function (e) {
-    let delivery = e.target.dataset.delivery
+    const delivery = e.target.dataset.delivery
     this.setData({
-      ['options.delivery']: delivery
+      'options.delivery': delivery
     })
   },
   // 显示遮罩层
@@ -83,8 +83,8 @@ Page({
       // context: this,
       title: '提示',
       message: '确认提交信息？'
-    }).then(() => { 
-      let that = this.data.options
+    }).then(() => {
+      const that = this.data.options
       // 将最近一次查询记录的选项存入缓存，供报价单展示选项信息
       wx.setStorageSync('latestQuote', {
         paper: that.paper,
