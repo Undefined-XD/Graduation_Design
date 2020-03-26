@@ -1,8 +1,6 @@
 // pages/main/quote.js
 import Dialog from '@vant/weapp/dialog/dialog'
 
-const util = require('../../functions/utils2')
-
 Page({
   /**
    * 页面的初始数据
@@ -108,21 +106,7 @@ Page({
   },
   // 显示遮罩层
   showOverlay: function () {
-    const data = this.data.options
-
-    const totalPrices = this.getPrices()
-
-    // 直接保存的中文名称
-    const storageData = {
-      coverPaper: data.coverPaper,
-      contentPaper: data.contentPaper,
-      foldTimes: data.foldTimes,
-      pages: data.pages,
-      albums: data.albums,
-      bookBinding: data.bookBinding,
-      delivery: data.delivery,
-      totalPrices
-    }
+    console.log(this.data.coverPaperNameMap[this.data.options.coverPaper])
 
     Dialog.confirm({
       // context: this,
@@ -130,9 +114,16 @@ Page({
       message: '确认提交信息？'
     })
       .then(() => {
+        const that = this.data.options
         // 将最近一次查询记录的选项存入缓存，供报价单展示选项信息
         wx.setStorageSync('latestQuote', {
-          ...storageData
+          coverPaper: that.coverPaper,
+          contentPaper: that.contentPaper,
+          foldTimes: that.foldTimes,
+          pages: that.pages,
+          albums: that.albums,
+          bookBinding: that.bookBinding,
+          delivery: that.delivery
         })
         // 跳转报价结果
         wx.navigateTo({
@@ -140,64 +131,6 @@ Page({
         })
       })
       .catch(() => {})
-  },
-
-  // 把开数中文表达换成英文
-  foldTimesFormat: function (foldtimes) {
-    foldtimes = foldtimes.slice(0, 2)
-    const classType = foldtimes.replace('大度', 'A').replace('正度', 'B')
-
-    return classType
-  },
-
-  // 把开数只保留数字部分
-  foldTimesNumber: function (foldtimes) {
-    foldtimes = foldtimes.match(/\d+/)[0]
-
-    return foldtimes
-  },
-
-  // 计算报价结果
-  getPrices: function () {
-    const data = this.data.options
-
-    // 将中文选项转换成英文形式，用于价格计算
-    const transformedData = {
-      coverPaper: this.data.coverPaperNameMap[data.coverPaper],
-      contentPaper: this.data.contentPaperNameMap[data.contentPaper],
-      foldTimes: this.foldTimesNumber(data.foldTimes),
-      class: this.foldTimesFormat(data.foldTimes),
-      pages: data.pages,
-      albums: data.albums,
-      bookBinding: data.bookBinding,
-      delivery: data.delivery
-    }
-
-    // 价格计算结果保存对象
-    const prices = {
-      cover: util.paperAmount('cover', transformedData.pages, transformedData.foldTimes, transformedData.albums) * util.paperUnitPrice(transformedData.coverPaper, transformedData.class),
-      content: util.paperAmount('content', transformedData.pages, transformedData.foldTimes, transformedData.albums) * util.paperUnitPrice(transformedData.contentPaper, transformedData.class),
-      layoutDesign: util.layoutDesign(transformedData.pages),
-      filmDesign: util.filmDesign(transformedData.pages),
-      exposurePS: util.exposurePS(transformedData.pages, transformedData.foldTimes),
-      proofing: util.proofing(transformedData.pages),
-      printingCover: util.printing('cover'),
-      printingContent: util.printing('content'),
-      bookbinding: util.bookBinding(transformedData.albums, transformedData.pages, transformedData.foldTimes),
-      laminating: util.laminating(transformedData.class),
-      plastic: util.plastic(transformedData.albums, transformedData.foldTimes, transformedData.pages),
-      packing: util.packing(50, transformedData.albums, 'kraftPaper')
-    }
-
-    // 计算基本报价总价
-    let totalPrices = 0
-    for (const key in prices) {
-      if (prices.hasOwnProperty(key)) {
-        totalPrices += prices[key]
-      }
-    }
-
-    return totalPrices.toFixed(2)
   },
 
   /**

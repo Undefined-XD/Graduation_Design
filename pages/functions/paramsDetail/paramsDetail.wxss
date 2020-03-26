@@ -1,0 +1,21 @@
+/* pages/functions/paramsDetail/paramsDetail.wxss */
+/* 外层容器 */
+.wraper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* 纸张参数输入栏 */
+.params__input {
+  position: relative;
+}
+
+/* 纸张参数提交 */
+.params__btn {
+  position: relative;
+  display: flex;
+  margin: 40rpx;
+  width: 100%;
+  justify-content: space-evenly;
+}

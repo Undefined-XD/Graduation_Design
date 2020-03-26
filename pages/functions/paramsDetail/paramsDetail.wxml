@@ -1,0 +1,15 @@
+<!-- pages/functions/paramsDetail/paramsDetail.wxml -->
+<view class="wraper">
+  <view class="params__input">
+    <van-cell-group>
+      <van-field value="{{ paperPrice }}" title-width="280rpx" size="large" required label="纸张价格(元/吨)" placeholder="请输入纸张价格" />
+      <van-field value="{{ scrapRate }}" title-width="280rpx" label="纸张损耗率(%)" placeholder="请输入纸张损耗率" required />
+      <van-field value="{{ paperArea }}" title-width="280rpx" label="纸张规格(mm*mm)" placeholder="请输入纸张规格" required border="{{ false }}" />
+    </van-cell-group>
+  </view>
+  <view class="params__btn">
+    <van-button bind:click="jumpToSetParams" type="primary" round>返回上级</van-button>
+    <van-button bind:click="paramsSubmit" type="info" round>提交修改</van-button>
+  </view>
+</view>
+<van-dialog id="van-dialog" />

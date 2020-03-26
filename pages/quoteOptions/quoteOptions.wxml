@@ -1,16 +1,26 @@
 <!-- pages/main/quote.wxml -->
 <!-- 主题 -->
-<view class="title">
+<!-- <view class="title">
   <text>印刷报价</text>
-</view>
+</view> -->
 <!-- 标题：纸张类型 -->
 <view class="options">
   <view class="options__title">
-    <text>纸张类型</text>
+    <text>封面纸张类型</text>
   </view>
   <view class="options__paper">
-    <block wx:for="{{paperArr}}" wx:key="item">
-      <van-button bind:click="checkPaper" size="small" color="{{options.paper == item ? selectedColor : ''}}" data-paper="{{item}}" round>
+    <block wx:for="{{coverPaperArr}}" wx:key="item">
+      <van-button bind:click="checkPaper" size="small" color="{{options.coverPaper == item ? selectedColor : ''}}" data-paper="{{item}}" data-cover="true" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+  <view class="options__title">
+    <text>内页纸张类型</text>
+  </view>
+  <view class="options__paper">
+    <block wx:for="{{contentPaperArr}}" wx:key="item">
+      <van-button bind:click="checkPaper" size="small" color="{{options.contentPaper == item ? selectedColor : ''}}" data-paper="{{item}}" data-cover="false" round>
         {{item}}
       </van-button>
     </block>
@@ -22,7 +32,14 @@
     <text>纸张规格</text>
   </view>
   <view class="options__fold-times">
-    <block wx:for="{{foldTimesArr}}" wx:key="item">
+    <block wx:for="{{foldTimesArr[0]}}" wx:key="item">
+      <van-button bind:click="checkFoldTimes" size="small" color="{{options.foldTimes == item ? selectedColor : ''}}" data-foldTimes="{{item}}" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+  <view class="options__fold-times">
+    <block wx:for="{{foldTimesArr[1]}}" wx:key="item">
       <van-button bind:click="checkFoldTimes" size="small" color="{{options.foldTimes == item ? selectedColor : ''}}" data-foldTimes="{{item}}" round>
         {{item}}
       </van-button>
@@ -36,12 +53,12 @@
   </view>
   <view class="options__quantity">
     <view class="options__quantity-left">
-      页数:
-      <van-stepper bind:change="checkPages" value="{{options.pages}}" input-width="40px" min="1" max="1000" step="2"></van-stepper>
+      内页数:
+      <van-stepper bind:change="checkPages" value="{{options.pages}}" input-width="50px" min="1" max="1000" step="2"></van-stepper>
     </view>
     <view class="options__quantity-right">
       册数:
-      <van-stepper bind:change="checkAlbums" value="{{options.albums}}" input-width="40px" min="1" max="1000"></van-stepper>
+      <van-stepper bind:change="checkAlbums" value="{{options.albums}}" input-width="50px" min="1" max="99999"></van-stepper>
     </view>
   </view>
 </view>
@@ -74,10 +91,9 @@
 <!-- 提交按钮 -->
 <view class="submit__button">
   <van-button bind:click="showOverlay" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
-    提交印刷信息
+    计算报价
   </van-button>
 </view>
-
 <van-dialog id="van-dialog" />
 <!-- <van-overlay show="{{overlay}}" bind:click="showOverlay">
   <view class="overlay__content">

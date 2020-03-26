@@ -8,13 +8,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    paper: '',
+    coverPaper: '',
+    contentPaper: '',
     foldTimes: '',
     pages: '',
     albums: '',
     bookBinding: '',
     delivery: '',
-    quoteTime: ''
+    quoteTime: '',
+    totalPrices: ''
   },
 
   // 返回报价选项页
@@ -29,21 +31,21 @@ Page({
    */
   onLoad: function (options) {
     // 获取当前时间
-    let now = time().format('YYYY-MM-DD HH:mm:ss')
+    const now = time().format('YYYY-MM-DD HH:mm:ss')
     // 获取缓存好的最近一次报价选项
     const quoteOptions = wx.getStorageSync('latestQuote')
     // 报价选项绑定到当前页面
     this.setData({
-      paper: quoteOptions.paper,
-      foldTimes: quoteOptions.foldTimes, 
+      coverPaper: quoteOptions.coverPaper,
+      contentPaper: quoteOptions.contentPaper,
+      foldTimes: quoteOptions.foldTimes,
       pages: quoteOptions.pages,
       albums: quoteOptions.albums,
       bookBinding: quoteOptions.bookBinding,
       delivery: quoteOptions.delivery,
-      quoteTime: now
+      quoteTime: now,
+      totalPrices: quoteOptions.totalPrices
     })
-
-    
   },
 
   /**

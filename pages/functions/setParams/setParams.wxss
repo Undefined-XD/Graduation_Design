@@ -48,6 +48,36 @@
   flex-direction: row;
 }
 
+/* 参数编辑弹窗 */
+.edit-dialog {
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* 参数编辑弹窗输入框 */
+.edit-dialog__input {
+  width: 200rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #000000;
+}
+
+/* 输入框和错误提示 */
+.dialog__input, .dialog__tip {
+  margin: 16rpx 0;
+  width: 400rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* 错误提示 */
+.dialog__tip {
+  color: #ff0000;
+  font-size: 28rpx;
+}
+
 /* 编辑按钮 */
 .edit-btn {
   width: 60px;

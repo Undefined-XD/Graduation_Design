@@ -8,7 +8,7 @@
     </view>
     <!-- 纸张类型和报价 -->
     <block wx:for="{{paperArr}}" wx:key="item">
-      <van-cell title="{{item.paper}}" is-link />
+      <van-cell bind:click="jumpToParamsDetail" title="{{item['chinese_name']}}" is-link />
     </block>
   </view>
   <view class="setting__title">
@@ -18,12 +18,12 @@
   </view>
   <!-- 其他设置 -->
   <block wx:for="{{settingArr}}" wx:key="item">
-    <van-swipe-cell right-width="{{ 120 }}">
+    <van-swipe-cell right-width="{{ 120 }}" data-param="{{index}}" bind:open="onOpen">
       <van-cell-group>
-        <van-cell title="{{item.settingNagme}}" value="{{item.cost}}元" />
+        <van-cell title="{{index}}" value="{{item}}元" />
       </van-cell-group>
       <view slot="right" class="van-swipe-cell__right">
-        <view class="edit-btn">修改</view>
+        <view class="edit-btn" bind:tap="editParams">修改</view>
         <view class="delete-btn">删除</view>
       </view>
     </van-swipe-cell>
@@ -32,4 +32,15 @@
     <van-button icon="plus" size="small" round type="info"></van-button>
   </view>
 </view>
+<!-- 参数修改弹窗 -->
+<van-dialog use-slot title="参数修改" show="{{ showEditDialog }}" show-cancel-button bind:close="inputClose">
+  <view class="edit-dialog">
+    <view class="dialog__input">
+      {{editedItem}}：
+      <input class="edit-dialog__input" value="{{editedValue}}" type="digit" focus="{{true}}" maxlength="9" bind:input="checkInput" />
+      元
+    </view>
+    <view class="dialog__tip" style="opacity:{{isInputFormatWrong ? 1 : 0}}">提示：输入的值格式不正确！</view>
+  </view>
+</van-dialog>
 <!-- <button bindtap="http">http</button> -->
