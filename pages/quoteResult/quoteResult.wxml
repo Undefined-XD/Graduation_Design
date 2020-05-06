@@ -1,11 +1,9 @@
 <!-- pages/quoteResult/quoteResult.wxml -->
 <!-- 包裹层 -->
-<view class="wraper">
+<view class="wrapper">
   <view class="result__container">
     <!-- 报价单标题 -->
-    <view class="result__main-title">
-      报价单
-    </view>
+    <view class="result__main-title">报价单</view>
     <!-- 报价单首部 -->
     <view class="result__header">
       <view class="result__title">精美画册</view>
@@ -16,6 +14,11 @@
       <view class="result__method">
         查询方式：
         <text>微信小程序</text>
+      </view>
+      <view class="result__annotation" bind:tap="jumpToAnnotation">
+        查询备注：
+        <text wx:if="{{annotation.length === 0}}">(点击添加/修改备注)</text>
+        <text wx:else>{{annotation}} (点击修改)</text>
       </view>
     </view>
     <!-- 报价单具体内容 -->
@@ -52,8 +55,11 @@
     </view>
     <!-- 按钮组 -->
     <view class="buttons">
-      <van-button bind:click="jumpToQuoteOptions" type="primary" round>返回选项页</van-button>
-      <van-button type="info" round>进一步了解</van-button>
+      <van-button bind:click="jumpToQuoteOptions" type="primary" round>返回选项</van-button>
+      <van-button bind:click="saveQuoteResult" type="info" round>保存记录</van-button>
+      <van-button bind:click="jumpToQuoteRecommend" type="info" round>推荐报价</van-button>
     </view>
+    <!-- 消息通知 -->
+    <van-notify id="van-notify" class="result__notify"/>
   </view>
 </view>

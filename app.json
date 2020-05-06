@@ -1,11 +1,16 @@
 {
   "pages": [
     "pages/tabBar/index/index",
-    "pages/functions/setParams/setParams",
     "pages/quoteOptions/quoteOptions",
-    "pages/functions/paramsDetail/paramsDetail",
+    "pages/quoteDetailOptions/quoteDetailOptions",
+    "pages/quoteHistory/historyList/historyList",
+    "pages/quoteResult/quoteResult",
+    "pages/quoteRecommend/quoteRecommend",
+    "pages/quoteHistory/historyDetail/historyDetail",
     "pages/tabBar/me/me",
-    "pages/quoteResult/quoteResult"
+    "pages/quoteAnnotation/quoteAnnotation",
+    "pages/functions/setParams/setParams",
+    "pages/functions/paramsDetail/paramsDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,7 +31,14 @@
     "van-field": "@vant/weapp/field/index",
     "van-swipe-cell": "@vant/weapp/swipe-cell/index",
     "van-divider": "@vant/weapp/divider/index",
-    "van-panel": "@vant/weapp/panel/index"
+    "van-panel": "@vant/weapp/panel/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-notify": "@vant/weapp/notify/index",
+    "van-dropdown-menu": "@vant/weapp/dropdown-menu/index",
+    "van-dropdown-item": "@vant/weapp/dropdown-item/index",
+    "van-submit-bar": "@vant/weapp/submit-bar/index",
+    "van-toast": "@vant/weapp/toast/index"
   },
   "tabBar": {
     "list": [

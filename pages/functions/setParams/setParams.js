@@ -1,4 +1,7 @@
 // pages/functions/setParams/setParams.js
+const app = getApp()
+const serverIP = app.globalData.serverIP
+
 Page({
   /**
    * 页面的初始数据
@@ -14,13 +17,13 @@ Page({
     ],
     // 其他设置，供渲染使用
     settingArr: [
-      { settingName: '设计费', cost: 100 },
-      { settingName: '胶片费', cost: 100 },
-      { settingName: '晒PS版', cost: 100 },
-      { settingName: '打样费', cost: 100 },
-      { settingName: '色令费', cost: 100 },
-      { settingName: '开机费', cost: 100 },
-      { settingName: '装订费', cost: 100 }
+      // { settingName: '设计费', cost: 100 },
+      // { settingName: '胶片费', cost: 100 },
+      // { settingName: '晒PS版', cost: 100 },
+      // { settingName: '打样费', cost: 100 },
+      // { settingName: '色令费', cost: 100 },
+      // { settingName: '开机费', cost: 100 },
+      // { settingName: '装订费', cost: 100 }
     ],
     // 被修改的项目
     editedItem: '',
@@ -29,60 +32,10 @@ Page({
     isInputFormatWrong: false
   },
 
-  http: function (e) {
-    console.log('http 请求')
-    wx.request({
-      url: 'http://localhost:8080/',
-      method: 'get',
-      dataType: '',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log('http res:', res)
-        console.log(res.data[0])
-      }
-    })
-  },
-
   // 跳转纸张类型参数详情设置页面
   jumpToParamsDetail: function () {
     wx.navigateTo({
       url: '../paramsDetail/paramsDetail'
-    })
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    // 访问数据库获取纸张类型数据
-    const that = this
-    wx.request({
-      url: 'http://localhost:8080?target=paper',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          paperArr: res.data
-        })
-      }
-    })
-
-    // 访问数据库获取其他参数数据
-    wx.request({
-      url: 'http://localhost:8080/?target=other',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log(res.data)
-        that.setData({
-          settingArr: res.data[0]
-        })
-      }
     })
   },
 
@@ -100,10 +53,11 @@ Page({
   // 校验输入值，用于标记提示文本
   checkInput: function (e) {
     const inputValue = e.detail.value
-    const reg = /\D/g
+    // 验证整数或者小数
+    const reg = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g
 
     this.setData({
-      isInputFormatWrong: reg.test(inputValue),
+      isInputFormatWrong: !reg.test(inputValue),
       editedValue: inputValue
     })
   },
@@ -115,6 +69,23 @@ Page({
     if (closeType === 'confirm') {
       if (!this.data.isInputFormatWrong) {
         console.log(this.data.editedItem, this.data.editedValue)
+        // 访问数据库获取纸张类型数据
+        const that = this
+        wx.request({
+          url: `${serverIP}?table=other_unit_prices&manipulation=update`,
+          // url: 'http://47.98.43.70:8088?table=other_unit_prices&manipulation=update',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          method: 'GET',
+          data: {
+            item: that.data.editedItem,
+            value: that.data.editedValue
+          },
+          success: function (res) {
+            that.onLoad()
+          }
+        })
       }
     }
 
@@ -123,12 +94,53 @@ Page({
       editedValue: '',
       isInputFormatWrong: false
     })
+
+    // 重新加载页面，请求新的数据
+    this.onLoad()
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    // 访问数据库获取纸张类型数据
+    const that = this
+    wx.request({
+      url: `${serverIP}?table=paper&manipulation=retrieve&mark=normal_retrieve`,
+      // url: 'http://47.98.43.70:8088?table=paper&manipulation=retrieve',
+      header: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          paperArr: res.data
+        })
+      }
+    })
+
+    // 访问数据库获取其他参数数据
+    wx.request({
+      url: `${serverIP}?table=other_unit_prices&manipulation=retrieve&mark=other_unit_prices_retrieve`,
+      // url: 'http://47.98.43.70:8088?table=other_unit_prices&manipulation=retrieve',
+      header: {
+        'Content-Type': 'application/json;charset=utf-8'
+      },
+      success: function (res) {
+        console.log(res.data)
+        that.setData({
+          settingArr: res.data[0]
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {},
+  onReady: function () {
+
+  },
 
   /**
    * 生命周期函数--监听页面显示

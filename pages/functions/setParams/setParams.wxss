@@ -91,3 +91,8 @@
   height: 88rpx;
   background-color: #dc3131;
 }
+
+/* 底部空白区域 */
+.margin-bottom {
+  height: 100rpx;
+}

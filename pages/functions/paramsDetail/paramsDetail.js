@@ -1,6 +1,9 @@
 // pages/functions/paramsDetail/paramsDetail.js
 import Dialog from '@vant/weapp/dialog/dialog'
 
+const app = getApp()
+const serverIP = app.globalData.serverIP
+
 Page({
 
   /**

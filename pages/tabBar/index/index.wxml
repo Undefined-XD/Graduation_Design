@@ -11,10 +11,16 @@
 <view class="quote-entry">
   <view class="quote-entry__btn">
     <van-button bind:click="jumpToQuoteOptions" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
-      查询报价
+      基本报价查询
     </van-button>
   </view>
-  <view class="quote-entry__history">
+  <view class="quote-entry__btn">
+    <van-button bind:click="jumpToQuoteDetailOptions" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
+      精准报价查询
+    </van-button>
+  </view>
+  <view class="quote-entry__btn"></view>
+  <!-- <view class="quote-entry__history">
     <view class="quote-entry__history-left">
       <text selectable="{{false}}">历史搜索记录:</text>
     </view>
@@ -24,5 +30,5 @@
         <text class="quote-entry__history-item">记录2</text>
       </block>
     </view>
-  </view>
+  </view> -->
 </view>

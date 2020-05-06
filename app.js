@@ -34,6 +34,7 @@ App({
     })
   },
   globalData: {
-    userInfo: null
+    // serverIP: 'http://localhost:8080'
+    serverIP: 'http://47.98.43.70:8088'
   }
 })

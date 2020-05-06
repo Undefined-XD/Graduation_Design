@@ -1,4 +1,6 @@
 // pages/me/me.js
+import Toast from '@vant/weapp/toast/toast'
+
 const app = getApp()
 
 Page({
@@ -33,19 +35,10 @@ Page({
     this.setData({
       rateValue: e.detail
     })
-  },
-
-  http: function (e) {
-    console.log('http 请求')
-    wx.request({
-      url: 'http://localhost:8080/',
-      method: 'get',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        console.log('http res:', res)
-      }
+    Toast.success({
+      message: '感谢您的评分',
+      forbidClick: true,
+      duration: 1000
     })
   },
 
@@ -53,15 +46,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const appData = app.globalData
-    console.log(appData)
-    const avatarURL = appData.userInfo.avatarUrl
-    const userName = appData.userInfo.nickName
 
-    this.setData({
-      avatarURL,
-      userName
-    })
   },
 
   /**

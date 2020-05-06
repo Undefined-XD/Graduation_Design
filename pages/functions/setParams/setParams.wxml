@@ -18,19 +18,20 @@
   </view>
   <!-- 其他设置 -->
   <block wx:for="{{settingArr}}" wx:key="item">
-    <van-swipe-cell right-width="{{ 120 }}" data-param="{{index}}" bind:open="onOpen">
+    <van-swipe-cell right-width="{{ 60 }}" data-param="{{index}}" bind:open="onOpen">
       <van-cell-group>
         <van-cell title="{{index}}" value="{{item}}元" />
       </van-cell-group>
       <view slot="right" class="van-swipe-cell__right">
         <view class="edit-btn" bind:tap="editParams">修改</view>
-        <view class="delete-btn">删除</view>
+        <!-- <view class="delete-btn">删除</view> -->
       </view>
     </van-swipe-cell>
   </block>
-  <view class="setting__add">
+  <view class="margin-bottom"></view>
+  <!-- <view class="setting__add">
     <van-button icon="plus" size="small" round type="info"></van-button>
-  </view>
+  </view> -->
 </view>
 <!-- 参数修改弹窗 -->
 <van-dialog use-slot title="参数修改" show="{{ showEditDialog }}" show-cancel-button bind:close="inputClose">

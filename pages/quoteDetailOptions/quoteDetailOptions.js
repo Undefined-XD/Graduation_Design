@@ -1,4 +1,4 @@
-// pages/main/quote.js
+// pages/quoteDetailOptions/quoteDetailOptions.js
 import Dialog from '@vant/weapp/dialog/dialog'
 
 const util = require('../../functions/utils2')
@@ -27,6 +27,8 @@ Page({
     bookBindingArr: ['无线胶装', '锁线胶装'],
     // 寄送方式，供渲染使用
     deliveryArr: ['自提', '寄送'],
+    // 烫印类型，供渲染使用
+    stampingArr: ['烫金', '烫银'],
     // 当前已选项数据
     options: {
       // 已选封面纸张类型
@@ -41,22 +43,54 @@ Page({
       albums: 100,
       // 已选装订类型
       bookBinding: '无线胶装',
+      // 已选烫印类型
+      stamping: '烫金',
       // 已选寄送类型
-      delivery: '自提',
-      // 其他单价
-      otherUnitPrices: {}
+      delivery: '自提'
     },
     // 封面用纸中英文对照
     coverPaperNameMap: {
-      铜版纸: 'ArtPaper157g',
-      哑粉纸: 'MattArtPaper157g',
-      双胶纸: 'OffsetPaper100g'
+      铜版纸: 'ArtPaper',
+      哑粉纸: 'MattArtPaper',
+      双胶纸: 'OffsetPaper'
     },
     // 内页用纸中英文对照
     contentPaperNameMap: {
-      铜版纸: 'ArtPaper128g',
-      哑粉纸: 'MattArtPaper128g',
-      双胶纸: 'OffsetPaper80g'
+      铜版纸: 'ArtPaper',
+      哑粉纸: 'MattArtPaper',
+      双胶纸: 'OffsetPaper'
+    },
+    // 其他选项中英文对照
+    otherOptionsNameMap: {
+      烫金: 'gold',
+      烫银: 'silver'
+    },
+    // 纸张类别选择器
+    paperClassPicker: '请选择',
+    // 纸张克重：铜版纸
+    paperWeightA: [105, 128, 157, 200],
+    // 纸张克重：哑粉纸
+    paperWeightB: [105, 128, 157, 200],
+    // 纸张克重：双胶纸
+    paperWeightC: [60, 70, 80, 100],
+    // 封面克重选项
+    coverWeight: [],
+    // 内页克重选项
+    contentWeight: [],
+    // 封面克重选择器
+    coverWeightPicker: '157',
+    // 内页克重选择器
+    contentWeightPicker: '128',
+    // 自定义设计制作费
+    customDesignUnitPrice: {
+      // 版面设计
+      layout: 0,
+      // 出胶片
+      film: 0,
+      // 晒PS版
+      exposure: 0,
+      // 打样费用
+      proofing: 0
     }
   },
 
@@ -69,10 +103,36 @@ Page({
       this.setData({
         'options.coverPaper': paperType
       })
+      switch (paperType) {
+        case '铜版纸':
+          this.setData({ coverWeight: this.data.paperWeightA })
+          break
+        case '哑粉纸':
+          this.setData({ coverWeight: this.data.paperWeightB })
+          break
+        case '双胶纸':
+          this.setData({ coverWeight: this.data.paperWeightC })
+      }
+
+      // 选择对应纸张类型后，绑定将当前纸张克重第一项
+      this.setData({ coverWeightPicker: this.data.coverWeight[0] })
     } else {
       this.setData({
         'options.contentPaper': paperType
       })
+      switch (paperType) {
+        case '铜版纸':
+          this.setData({ contentWeight: this.data.paperWeightA })
+          break
+        case '哑粉纸':
+          this.setData({ contentWeight: this.data.paperWeightB })
+          break
+        case '双胶纸':
+          this.setData({ contentWeight: this.data.paperWeightC })
+      }
+
+      // 选择对应纸张类型后，绑定将当前纸张克重第一项
+      this.setData({ contentWeightPicker: this.data.contentWeight[0] })
     }
   },
   // 选择开数
@@ -96,12 +156,36 @@ Page({
       'options.albums': albums
     })
   },
+
+  // 获取自定义的设计与打样参数
+  setCustomDesignUnitPrice: function (e) {
+    // 从相应的 input 上的 dataset 上获取自定义参数名
+    const customType = 'customDesignUnitPrice.' + e.target.dataset.type
+    const customValue = parseFloat(e.detail.value)
+
+    this.setData({
+      [customType]: customValue
+    })
+
+    console.log(customType, customValue)
+    console.log(this.data.customDesignUnitPrice)
+  },
+
   // 选择装订类型
   checkBookBinding: function (e) {
     const bookBinding = e.target.dataset.bookbinding
     this.setData({
       'options.bookBinding': bookBinding
     })
+  },
+  // 选择烫印类型
+  checkStamping: function (e) {
+    const stamping = e.target.dataset.stamping
+
+    this.setData({
+      'options.stamping': stamping
+    })
+    console.log(this.data.options.stamping)
   },
   // 选择寄送类型
   checkDelivery: function (e) {
@@ -113,7 +197,7 @@ Page({
   // 显示遮罩层
   showOverlay: function () {
     const data = this.data.options
-    const that = this
+    const that = this.data
 
     // 获取最终报价，并存入本地缓存
     this.getPrices()
@@ -122,13 +206,13 @@ Page({
     const storageData = {
       coverPaper: data.coverPaper,
       contentPaper: data.contentPaper,
-      coverWeight: that.data.coverPaperNameMap[data.coverPaper].match(/\d+/g)[0],
-      contentWeight: that.data.contentPaperNameMap[data.contentPaper].match(/\d+/g)[0],
       foldTimes: data.foldTimes,
       pages: data.pages,
       albums: data.albums,
       bookBinding: data.bookBinding,
-      delivery: data.delivery
+      delivery: data.delivery,
+      coverWeight: that.coverWeightPicker,
+      contentWeight: that.contentWeightPicker
     }
 
     Dialog.confirm({
@@ -142,20 +226,17 @@ Page({
         // 将最近一次查询记录的选项存入缓存，供报价单展示选项信息
         wx.setStorageSync('latestQuote', {
           ...storageData,
-          totalPrices: that.data.totalMoney
+          totalPrices: that.totalMoney
         })
         // 跳转报价结果
         wx.navigateTo({
-          url: '/pages/quoteResult/quoteResult?recommendType=normal',
+          url: '../quoteResult/quoteResult?recommendType=accurate',
           success: function (res) {
             // 通过eventChannel向被打开页面传送数据
             res.eventChannel.emit('acceptDataFromOpenerPage',
               {
-                recommendType: 'normal',
-                layout: data.otherUnitPrices['设计费'],
-                film: data.otherUnitPrices['菲林'],
-                exposure: data.otherUnitPrices['PS版'],
-                proofing: data.otherUnitPrices['打样费']
+                recommendType: 'accurate',
+                ...that.customDesignUnitPrice
               })
           }
         })
@@ -181,6 +262,7 @@ Page({
   // 计算报价结果
   getPrices: function () {
     const data = this.data.options
+    const thatData = this.data
     const that = this
 
     // 将中文选项转换成英文形式，用于价格计算
@@ -189,6 +271,8 @@ Page({
       contentPaper: this.data.contentPaperNameMap[data.contentPaper],
       foldTimes: this.foldTimesNumber(data.foldTimes),
       class: this.foldTimesFormat(data.foldTimes),
+      coverWeight: this.data.coverWeightPicker + 'g',
+      contentWeight: this.data.contentWeightPicker + 'g',
       pages: data.pages,
       albums: data.albums,
       bookBinding: data.bookBinding,
@@ -197,8 +281,12 @@ Page({
 
     // 价格计算结果保存对象
     // const prices = {
-    //   cover: util.paperAmount('cover', transformedData.pages, transformedData.foldTimes, transformedData.albums) * util.paperUnitPrice(transformedData.coverPaper, transformedData.class),
-    //   content: util.paperAmount('content', transformedData.pages, transformedData.foldTimes, transformedData.albums) * util.paperUnitPrice(transformedData.contentPaper, transformedData.class),
+    //   cover:
+    //     util.paperAmount('cover', transformedData.pages, transformedData.foldTimes, transformedData.albums) *
+    //     util.paperUnitPrice(transformedData.coverPaper + transformedData.coverWeight, transformedData.class),
+    //   content:
+    //     util.paperAmount('content', transformedData.pages, transformedData.foldTimes, transformedData.albums) *
+    //     util.paperUnitPrice(transformedData.contentPaper + transformedData.contentWeight, transformedData.class),
     //   layoutDesign: util.layoutDesign(transformedData.pages),
     //   filmDesign: util.filmDesign(transformedData.pages),
     //   exposurePS: util.exposurePS(transformedData.pages, transformedData.foldTimes),
@@ -212,24 +300,23 @@ Page({
     // }
 
     const items = {
-      cover: transformedData.coverPaper,
-      content: transformedData.contentPaper,
+      cover: transformedData.coverPaper + transformedData.coverWeight,
+      content: transformedData.contentPaper + transformedData.contentWeight,
       albums: transformedData.albums,
       foldTimes: data.foldTimes,
       pages: transformedData.pages,
       bookbinding: data.bookBinding,
       delivery: data.delivery,
-      ps: data.otherUnitPrices['PS版'],
-      film: data.otherUnitPrices['菲林'],
-      layout: data.otherUnitPrices['设计费'],
-      proofing: data.otherUnitPrices['打样费']
+      ps: thatData.customDesignUnitPrice.exposure,
+      film: thatData.customDesignUnitPrice.film,
+      layout: thatData.customDesignUnitPrice.layout,
+      proofing: thatData.customDesignUnitPrice.proofing
     }
-
     console.log('items', items)
 
     wx.request({
-      // url: 'http://localhost:8080?manipulation=calculate&quoteType=normal',
-      url: `${serverIP}?manipulation=calculate&quoteType=normal`,
+      // url: 'http://localhost:8080?manipulation=calculate&quoteType=accurate',
+      url: `${serverIP}?manipulation=calculate&quoteType=accurate`,
       data: {
         allOptions: items
       },
@@ -244,22 +331,48 @@ Page({
       }
     })
 
-    /*
     // 计算基本报价总价
-    let totalPrices = 0
-    for (const key in prices) {
-      if (prices.hasOwnProperty(key)) {
-        totalPrices += prices[key]
-      }
-    }
+    // let totalPrices = 0
+    // for (const key in prices) {
+    //   if (prices.hasOwnProperty(key)) {
+    //     totalPrices += prices[key]
+    //   }
+    // }
 
-    return totalPrices.toFixed(2) */
+    // return totalPrices.toFixed(2)
+  },
+
+  // 纸张类别选择器
+  paperClassPicker: function (e) {
+    this.setData({
+      paperClassPicker: this.data.paperClass[e.detail.value]
+    })
+  },
+
+  // 封面克重选择器
+  coverWeightPicker: function (e) {
+    this.setData({
+      coverWeightPicker: this.data.coverWeight[e.detail.value]
+    })
+  },
+
+  // 内页克重选择器
+  contentWeightPicker: function (e) {
+    this.setData({
+      contentWeightPicker: this.data.contentWeight[e.detail.value]
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 默认初始化纸张克重选项
+    this.setData({
+      coverWeight: this.data.paperWeightA,
+      contentWeight: this.data.paperWeightA
+    })
+
     const that = this
     // 获取其他单价参数
     wx.request({
@@ -269,9 +382,13 @@ Page({
         'Content-Type': 'application/json'
       },
       success: function (res) {
-        console.log('res', res.data[0])
+        const resData = res.data[0]
+        // 对其他参数进行赋值
         that.setData({
-          'options.otherUnitPrices': res.data[0]
+          'customDesignUnitPrice.exposure': resData['PS版'],
+          'customDesignUnitPrice.layout': resData['设计费'],
+          'customDesignUnitPrice.film': resData['菲林'],
+          'customDesignUnitPrice.proofing': resData['打样费']
         })
       }
     })

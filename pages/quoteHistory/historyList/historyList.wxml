@@ -1,0 +1,31 @@
+<!-- pages/quoteHistory/historyList/historyList.wxml -->
+<view class="wrapper">
+  <!-- 条件过滤器 -->
+  <view class="filter">
+    <van-dropdown-menu>
+      <van-dropdown-item bind:change="categoryChange" value="{{ categoryValue }}" options="{{ categories }}" />
+      <van-dropdown-item bind:change="orderChange" value="{{ orderValue }}" options="{{ order }}" />
+    </van-dropdown-menu>
+  </view>
+  <!-- 记录列表 -->
+  <view class="list__group">
+    <block wx:for="{{renderListArr}}">
+      <view class="list__item" bind:tap="jumpToHistoryDetail" data-item="{{item}}">
+        <!-- 图标 -->
+        <view class="list__icon">
+          <image src="{{'/src/img/icon_' + item.quote_type + '.png'}}" />
+        </view>
+        <!-- 记录信息 -->
+        <view class="list__title">
+          <text class="list__title-text">[{{item.quote_type == 'normal' ? '基本报价' : '精准报价'}}] - {{item.customer_name}}</text>
+          <text class="list__title-time">{{item.timeFormatted}}</text>
+        </view>
+        <!-- 报价金额 -->
+        <view class="list__amount">
+          <text>{{item.quote_amount}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- <wxs module="formater" src="../formater.wxs"></wxs> -->

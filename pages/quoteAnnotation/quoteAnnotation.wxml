@@ -1,0 +1,22 @@
+<!-- pages/quoteAnnotation/quoteAnnotation.wxml -->
+<view class="wrapper">
+  <view class="annotation">
+    <!-- 备注标题 -->
+    <view class="annotation__title">
+      <text class="annotation__title-bold">输入查询备注</text>
+    </view>
+    <!-- 备注文本区域 -->
+    <view class="annotation__textarea">
+      <textarea class="annotation__content" maxlength="100" bindinput="contextCounter" value="{{annotation}}"></textarea>
+    </view>
+    <!-- 备注字数 -->
+    <view class="annotation__text-length">
+      <text>已输入 {{annotationLength}}/100 个字符</text>
+    </view>
+    <!-- 按钮组 -->
+    <view class="annotation__buttons">
+      <van-button type="info" round bind:click="cancelAndReturn">取消并返回</van-button>
+      <van-button type="primary" round bind:click="confirmAndReturn">保存并返回</van-button>
+    </view>
+  </view>
+</view>

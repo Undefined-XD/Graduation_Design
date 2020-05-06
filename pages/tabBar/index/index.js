@@ -22,6 +22,17 @@ Page({
       }
     })
   },
+  jumpToQuoteDetailOptions: function () { 
+    wx.navigateTo({
+      url: '/pages/quoteDetailOptions/quoteDetailOptions',
+      success: function () {
+        console.log('jumpToQuoteDetail success')
+      },
+      fail: function () {
+        console.log('jumToQuoteDetail fail')
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

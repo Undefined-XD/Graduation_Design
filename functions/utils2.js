@@ -1,14 +1,58 @@
-
 // 纸张类型吨价
 const paperPricePerTon = {
   // 大度纸
   A: {
+    // 105g铜版纸吨价
+    ArtPaper105g: 6800,
     // 128g铜版纸吨价
     ArtPaper128g: 6800,
     // 157g铜版纸吨价
     ArtPaper157g: 6800,
     // 200g铜版纸吨价
-    ArtPaper200g: 6800
+    ArtPaper200g: 6800,
+    // 105g哑粉纸吨价
+    MattArtPaper105g: 6800,
+    // 128g哑粉纸吨价
+    MattArtPaper128g: 6800,
+    // 157g哑粉纸吨价
+    MattArtPaper157g: 6800,
+    // 200g哑粉纸吨价
+    MattArtPaper200g: 6800,
+    // 60g双胶纸吨价
+    OffsetPaper60g: 6800,
+    // 70g双胶纸吨价
+    OffsetPaper70g: 6800,
+    // 80g双胶纸吨价
+    OffsetPaper80g: 6800,
+    // 100g双胶纸吨价
+    OffsetPaper100g: 6800
+  },
+  // 正度纸
+  B: {
+    // 105g铜版纸吨价
+    ArtPaper105g: 6800,
+    // 128g铜版纸吨价
+    ArtPaper128g: 6800,
+    // 157g铜版纸吨价
+    ArtPaper157g: 6800,
+    // 200g铜版纸吨价
+    ArtPaper200g: 6800,
+    // 105g哑粉纸吨价
+    MattArtPaper105g: 6800,
+    // 128g哑粉纸吨价
+    MattArtPaper128g: 6800,
+    // 157g哑粉纸吨价
+    MattArtPaper157g: 6800,
+    // 200g哑粉纸吨价
+    MattArtPaper200g: 6800,
+    // 60g双胶纸吨价
+    OffsetPaper60g: 6800,
+    // 70g双胶纸吨价
+    OffsetPaper70g: 6800,
+    // 80g双胶纸吨价
+    OffsetPaper80g: 6800,
+    // 100g双胶纸吨价
+    OffsetPaper100g: 6800
   }
 }
 
@@ -53,18 +97,24 @@ const coefficient = {
     // 版面设计
     layout: 50,
     // 出胶片
-    film: 8,
+    film: 10,
     // 晒PS版
     exposure: 60
   },
   // 打样费用
-  Proofing: 25,
+  Proofing: 20,
   // 色令价格
   ColorReam: 20,
   // 开机费
   MachineCost: 650,
   // 装订费
   BookBinding: 0.06,
+  // 烫印材料
+  Stamping: {
+    // 长、宽、一卷单价
+    gold: [640, 12000, 90],
+    silver: [640, 12000, 90]
+  },
   // 哑膜费用
   MatteMembrane: 0.65,
   // 每贴单价
@@ -104,9 +154,9 @@ function paperAmount (paperType, pages, foldTimes, albums) {
   let amount = 0
 
   if (paperType === 'content') {
-    wholePapers = pages / foldTimes / 2 * albums
+    wholePapers = (pages / foldTimes / 2) * albums
   } else {
-    wholePapers = albums / foldTimes * 2
+    wholePapers = (albums / foldTimes) * 2
   }
 
   // 计算损耗用纸量
@@ -122,7 +172,6 @@ function paperAmount (paperType, pages, foldTimes, albums) {
     quotationData.actualCoverPapers = amount
   }
 
-  console.log(amount)
   return amount
 }
 
@@ -135,7 +184,10 @@ function paperUnitPrice (paperName, paperClass = 'A') {
   // 获取纸张名中的克重
   const paperWeight = paperName.match(/\d+/)[0]
   // 计算纸张单价
-  const unitPrice = paperPricePerTon[paperClass][paperName] * paperWeight / coefficient.PaperClass[paperClass] / 500
+  const unitPrice =
+    (paperPricePerTon[paperClass][paperName] * paperWeight) /
+    coefficient.PaperClass[paperClass] /
+    500
 
   return unitPrice.toFixed(2)
 }
@@ -175,7 +227,7 @@ function exposurePS (pages, foldTimes) {
  * @param {number} pages 内文页数
  */
 function proofing (pages) {
-  return (pages * 4) * coefficient.Proofing
+  return pages * 4 * coefficient.Proofing
 }
 
 /**
@@ -184,12 +236,18 @@ function proofing (pages) {
  */
 function printing (printingType) {
   if (printingType === 'content') {
-    const contentPrintingCost = quotationData.contentPapers / 500 * coefficient.ColorReam * 4 * 2
-    return contentPrintingCost > coefficient.MachineCost ? contentPrintingCost : coefficient.MachineCost
+    const contentPrintingCost =
+      (quotationData.contentPapers / 500) * coefficient.ColorReam * 4 * 2
+    return contentPrintingCost > coefficient.MachineCost
+      ? contentPrintingCost
+      : coefficient.MachineCost
   } else {
-    const coverPrintingCost = quotationData.coverPapers / 500 * coefficient.ColorReam * 4 * 2
+    const coverPrintingCost =
+      (quotationData.coverPapers / 500) * coefficient.ColorReam * 4 * 2
     // 若封面印刷小于开机费，则按开机费计算
-    return coverPrintingCost > coefficient.MachineCost ? coverPrintingCost : coefficient.MachineCost
+    return coverPrintingCost > coefficient.MachineCost
+      ? coverPrintingCost
+      : coefficient.MachineCost
   }
 }
 
@@ -207,18 +265,47 @@ function bookBinding (albums, pages, foldTimes) {
 }
 
 /**
- *
+ * 覆膜
  * @param {string} paperClass 纸张类型：大度纸、正度纸
  */
 function laminating (paperClass) {
   // 拼接纸张名字，如 A0、B0，数字表示的是开数，0是全开
   const paperSize = `${paperClass}0`
   // 计算覆膜面积
-  const paperArea = paperParams[paperClass][paperSize][0] * paperParams[paperClass][paperSize][1] / 1000000
+  const paperArea =
+    (paperParams[paperClass][paperSize][0] *
+      paperParams[paperClass][paperSize][1]) /
+    1000000
   // 计算覆膜价格 = 封面所需全开纸数量 * 一张全开纸面积 * 哑膜单位面积价格
-  const laminatingPrice = quotationData.coverPapers * paperArea * coefficient.MatteMembrane
+  const laminatingPrice =
+    quotationData.coverPapers * paperArea * coefficient.MatteMembrane
 
   return laminatingPrice
+}
+
+/**
+ * 烫印价格计算
+ * @param {boolean} isUsed 是否使用烫印
+ * @param {number} albums 烫印数量
+ * @param {array} stampArea 烫印图案[宽, 高]
+ * @param {string} kind 烫印种类
+ */
+function stamping (isUsed, albums, stampArea, kind) {
+  if (!isUsed) {
+    return 1
+  }
+
+  // 获取烫金银宽高
+  const [width, height] = stampArea
+  const [materialWidth, materialHeight, materialPrice] = coefficient.Stamping[
+    kind
+  ]
+  // 计算每卷烫印材料能用的数量
+  const rows = materialWidth / (width + 10)
+  const columns = materialHeight / (height + 10)
+  const total = rows * columns
+  // 计算烫印价格
+  return (albums / total) * materialPrice
 }
 
 /**
@@ -257,6 +344,7 @@ module.exports = {
   printing,
   bookBinding,
   laminating,
+  stamping,
   plastic,
   packing
 }

@@ -1,0 +1,138 @@
+/* pages/main/quoteDetailOptions.wxss */
+/* 主标题 */
+.title {
+  position: relative;
+  padding: 30rpx 30rpx;
+  width: 100%;
+  height: 120rpx;
+  line-height: 60rpx;
+  color: blue;
+  font-size: 40rpx;
+  /* background-color: red; */
+  box-sizing: border-box;
+}
+
+/* 报价选项类型 */
+.options {
+  position: relative;
+  width: 100%;
+  margin-bottom: 30rpx;
+  /* background-color: green; */
+}
+
+/* 选项标题 */
+.options__title {
+  position: relative;
+  padding-left: 40rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: blue;
+  box-sizing: border-box;
+}
+
+/* 选项内容 */
+.options__paper,
+.options__fold-times,
+.options__paper-weight,
+.options__quantity,
+.options__design,
+.options__stamping,
+.options__book-binding,
+.options__delivery {
+  padding: 20rpx;
+}
+
+/* 选项边距 */
+.options__paper van-button,
+.options__fold-times van-button,
+.options__book-binding van-button,
+.options__delivery van-button,
+.options__stamping van-button {
+  margin: 0 10rpx 10rpx;
+}
+
+.options__paper-weight,
+.options__design {
+  padding: 30rpx;
+}
+
+/* 纸张克重 */
+.options__paper-weight {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 设计制作 */
+.options__design {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* 设计制作输入框组 */
+.options__input-group {
+  height: 80rpx;
+  width: 330rpx;
+  line-height: 80rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 设计制作输入框样式 */
+.options__input {
+  width: 100rpx;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  border-bottom: 2rpx solid #0000FF;
+}
+
+/* 选项数量补充 */
+.options__quantity {
+  padding: 20rpx 10rpx 20rpx;
+  display: flex;
+  flex-direction: row;
+}
+
+/* 选项数量左侧 */
+.options__quantity-left {
+  line-height: 60rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* 选项数量右侧 */
+.options__quantity-right {
+  line-height: 60rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+/* 提交按钮 */
+.submit__button {
+  position: relative;
+  margin-top: 40rpx;
+  margin-bottom: 120rpx;
+  display: flex;
+  justify-content: center;
+}
+
+/* 底部空白区域 */
+.submit__button::after {
+  content: '';
+  display: block;
+  height: 200rpx;
+}
+
+/* 遮罩层对话框 */
+.overlay__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

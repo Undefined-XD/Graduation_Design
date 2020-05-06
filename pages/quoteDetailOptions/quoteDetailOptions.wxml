@@ -1,0 +1,165 @@
+<!-- pages/main/quoteDetailOptions.wxml -->
+<!-- 主题 -->
+<!-- <view class="title">
+  <text>印刷报价</text>
+</view> -->
+<!-- 标题：纸张类型 -->
+<view class="options">
+  <view class="options__title">
+    <text>封面纸张类型</text>
+  </view>
+  <view class="options__paper">
+    <block wx:for="{{coverPaperArr}}" wx:key="item">
+      <van-button bind:click="checkPaper" size="small" color="{{options.coverPaper == item ? selectedColor : ''}}" data-paper="{{item}}" data-cover="true" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+  <view class="options__title">
+    <text>内页纸张类型</text>
+  </view>
+  <view class="options__paper">
+    <block wx:for="{{contentPaperArr}}" wx:key="item">
+      <van-button bind:click="checkPaper" size="small" color="{{options.contentPaper == item ? selectedColor : ''}}" data-paper="{{item}}" data-cover="false" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+</view>
+<!-- 标题：规格 -->
+<view class="options">
+  <view class="options__title">
+    <text>纸张规格</text>
+  </view>
+  <view class="options__fold-times">
+    <block wx:for="{{foldTimesArr[0]}}" wx:key="item">
+      <van-button bind:click="checkFoldTimes" size="small" color="{{options.foldTimes == item ? selectedColor : ''}}" data-foldTimes="{{item}}" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+  <view class="options__fold-times">
+    <block wx:for="{{foldTimesArr[1]}}" wx:key="item">
+      <van-button bind:click="checkFoldTimes" size="small" color="{{options.foldTimes == item ? selectedColor : ''}}" data-foldTimes="{{item}}" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+</view>
+<!-- 标题：纸张参数 -->
+<view class="options">
+  <view class="options__title">
+    <text>纸张参数</text>
+  </view>
+  <view class="options__paper-weight">
+    <picker mode="selector" range="{{coverWeight}}" bindchange="coverWeightPicker">
+      <view>
+        封面克重：
+        <text>
+          <text style="color:#0000FF;border-bottom:2rpx solid">{{coverWeightPicker||'___'}}</text> g/㎡
+        </text>
+      </view>
+    </picker>
+    <picker mode="selector" range="{{contentWeight}}" bindchange="contentWeightPicker">
+      <view>
+        内页克重：
+        <text>
+          <text style="color:#0000FF;border-bottom:2rpx solid">{{contentWeightPicker||'___'}}</text> g/㎡
+        </text>
+      </view>
+    </picker>
+  </view>
+</view>
+<!-- 标题：数量 -->
+<view class="options">
+  <view class="options__title">
+    <text>相关数量</text>
+  </view>
+  <view class="options__quantity">
+    <view class="options__quantity-left">
+      内页数:
+      <van-stepper bind:change="checkPages" value="{{options.pages}}" input-width="50px" min="1" max="1000" step="2"></van-stepper>
+    </view>
+    <view class="options__quantity-right">
+      册数:
+      <van-stepper bind:change="checkAlbums" value="{{options.albums}}" input-width="50px" min="1" max="99999"></van-stepper>
+    </view>
+  </view>
+</view>
+<!-- 标题：设计和打样 -->
+<view class="options">
+  <view class="options__title">
+    <text>设计和打样</text>
+  </view>
+  <view class="options__design">
+    <view class="options__input-group">
+      <text>版面费：</text>
+      <input class="options__input" type="digit" data-type="layout" bindinput="setCustomDesignUnitPrice" maxlength="5" value="{{customDesignUnitPrice.layout}}" placeholder="请输入" />
+      <text>元/P</text>
+    </view>
+    <view class="options__input-group">
+      <text>胶片费：</text>
+      <input class="options__input" type="digit" data-type="film" bindinput="setCustomDesignUnitPrice" maxlength="5" value="{{customDesignUnitPrice.film}}" placeholder="请输入" />
+      <text>元/张</text>
+    </view>
+    <view class="options__input-group">
+      <text>晒版费：</text>
+      <input class="options__input" type="digit" data-type="exposure" bindinput="setCustomDesignUnitPrice" maxlength="5" value="{{customDesignUnitPrice.exposure}}" placeholder="请输入" />
+      <text>元/版</text>
+    </view>
+    <view class="options__input-group">
+      <text>打样费：</text>
+      <input class="options__input" type="digit" data-type="proofing" bindinput="setCustomDesignUnitPrice" maxlength="5" value="{{customDesignUnitPrice.proofing}}" placeholder="请输入" />
+      <text>元/版</text>
+    </view>
+  </view>
+</view>
+<!-- 标题：装订类型 -->
+<view class="options">
+  <view class="options__title">
+    <text>装订类型</text>
+  </view>
+  <view class="options__book-binding">
+    <block wx:for="{{bookBindingArr}}" wx:key="item">
+      <van-button bind:click="checkBookBinding" size="small" color="{{options. bookBinding == item ? selectedColor : ''}}" data-bookBinding="{{item}}" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+</view>
+<view class="options">
+  <view class="options__title">
+    <text>烫印方式</text>
+  </view>
+  <view class="options__stamping">
+    <block wx:for="{{stampingArr}}" wx:key="item">
+      <van-button bind:click="checkStamping" size="small" color="{{options.stamping == item ? selectedColor : ''}}" data-stamping="{{item}}" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+</view>
+<!-- 标题：寄送类型 -->
+<view class="options">
+  <view class="options__title">
+    <text>寄送类型</text>
+  </view>
+  <view class="options__delivery">
+    <block wx:for="{{deliveryArr}}" wx:key="item">
+      <van-button bind:click="checkDelivery" size="small" color="{{options.delivery == item ? selectedColor : ''}}" data-delivery="{{item}}" round>
+        {{item}}
+      </van-button>
+    </block>
+  </view>
+</view>
+<!-- 提交按钮 -->
+<view class="submit__button">
+  <van-button bind:click="showOverlay" round color="linear-gradient(to right, #4bb0ff, #6149f6)">
+    计算报价
+  </van-button>
+</view>
+<van-dialog id="van-dialog" />
+<!-- <van-overlay show="{{overlay}}" bind:click="showOverlay">
+  <view class="overlay__content">
+  </view>
+</van-overlay> -->
