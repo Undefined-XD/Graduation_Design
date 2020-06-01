@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
 		"postcss": true,
@@ -27,7 +27,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
-	"appid": "wx575721e38d22aa41",
+	"appid": "wx6030b531d67d33d7",
 	"projectname": "MiniQuote",
 	"debugOptions": {
 		"hidedInDevtools": []

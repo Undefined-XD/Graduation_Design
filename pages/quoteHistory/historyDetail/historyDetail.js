@@ -1,5 +1,6 @@
 // pages/quoteHistory/historyDetail/historyDetail.js
 import Dialog from '@vant/weapp/dialog/dialog'
+import Notify from '@vant/weapp/notify/notify'
 
 const app = getApp()
 const serverIP = app.globalData.serverIP
@@ -77,6 +78,13 @@ Page({
           console.dir(res.data[0])
           that.setData({
             quoteInfo: res.data[0]
+          })
+        },
+        fail: function (err) {
+          console.log(err)
+          Notify({
+            message: '报价记录详情数据获取错误，请重新进入该页面！',
+            duration: 0
           })
         }
       })

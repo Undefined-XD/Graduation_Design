@@ -1,5 +1,6 @@
 // pages/quoteDetailOptions/quoteDetailOptions.js
 import Dialog from '@vant/weapp/dialog/dialog'
+import Notify from '@vant/weapp/notify/notify'
 
 const util = require('../../functions/utils2')
 const app = getApp()
@@ -389,6 +390,13 @@ Page({
           'customDesignUnitPrice.layout': resData['设计费'],
           'customDesignUnitPrice.film': resData['菲林'],
           'customDesignUnitPrice.proofing': resData['打样费']
+        })
+      },
+      fail: function (err) {
+        console.log(err)
+        Notify({
+          message: '请求参数错误，请重新进入该页面！',
+          duration: 0
         })
       }
     })

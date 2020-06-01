@@ -6,11 +6,13 @@
     <view class="header__icon">
       <image src="{{'/src/img/icon_' + headerInfo.quote_type + '.png'}}"></image>
     </view>
-    <!-- 头部信息-备注 -->
+    <!-- 头部信息-报价类型 -->
     <view class="header__text">
-      <text>
-        [{{headerInfo.quote_type == 'normal' ? '基本报价' : '精准报价'}}] - {{headerInfo.customer_name}}
-      </text>
+      <text>[{{headerInfo.quote_type == 'normal' ? '基本报价' : '精准报价'}}]</text>
+    </view>
+    <!-- 头部信息—报价备注 -->
+    <view class="header__annotation">
+      <text>{{headerInfo.customer_name}}</text>
     </view>
     <!-- 头部信息-金额 -->
     <view class="header__amount">
@@ -47,14 +49,19 @@
         <view class="paper__option-title">{{item}}</view>
         <view class="paper__option-content" wx:if="{{item==='版面费'}}">{{quoteInfo.design}} 元/P</view>
         <view class="paper__option-content" wx:if="{{item==='胶片费'}}">{{quoteInfo.film}} 元/片</view>
-        <view class="paper__option-content" wx:if="{{item==='晒版费'}}">{{quoteInfo.exposure}} 元/版</view>
+        <view class="paper__option-content" wx:if="{{item==='晒版费'}}">
+          {{quoteInfo.exposure}} 元/版
+        </view>
         <view class="paper__option-content" wx:if="{{item==='打样费'}}">{{quoteInfo.proof}} 元/P</view>
       </view>
     </block>
   </view>
   <!-- 删除按钮 -->
   <view class="delete__button">
-    <van-button round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="deleteHistory">删除订单记录</van-button>
+    <van-button round color="linear-gradient(to right, #4bb0ff, #6149f6)" bind:click="deleteHistory">
+      删除订单记录
+    </van-button>
   </view>
   <van-dialog id="van-dialog" />
 </view>
+<van-notify id="van-notify" />

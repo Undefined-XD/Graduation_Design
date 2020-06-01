@@ -22,6 +22,7 @@ Page({
     delivery: '',
     quoteTime: '',
     totalPrices: '',
+    totalPricesFormated: '',
     allParams: '',
     coverWeight: '',
     contentWeight: '',
@@ -124,6 +125,13 @@ Page({
       },
       success: function (res) {
         console.log(res.data)
+      },
+      fail: function (err) {
+        console.log(err)
+        Notify({
+          message: '报价记录保存错误，请重新进行保存！',
+          duration: 0
+        })
       }
     })
   },
@@ -149,10 +157,18 @@ Page({
       delivery: quoteOptions.delivery,
       quoteTime: now,
       totalPrices: quoteOptions.totalPrices,
+      totalPricesFormated: quoteOptions.totalPrices.toLocaleString(),
       coverWeight: quoteOptions.coverWeight,
       contentWeight: quoteOptions.contentWeight,
       recommendType: recommendType
     })
+
+    if (this.data.totalPrices === '???') {
+      Notify({
+        message: '报价计算错误，请返回上级页面重新计算！',
+        duration: 0
+      })
+    }
   },
 
   /**

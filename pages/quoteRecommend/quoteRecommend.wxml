@@ -26,5 +26,6 @@
     <van-field label="寄送类型" value="{{ customerOptions.delivery }}" placeholder="" readonly />
     <!-- <van-field  label="" value="{{ value }}" placeholder="" readonly /> -->
   </van-cell-group>
-  <van-submit-bar price="{{ totalMoney }}" button-text="提交订单" />
+  <van-submit-bar price="{{ totalMoney }}" button-text="保存记录" />
 </view>
+<van-notify id="van-notify" />

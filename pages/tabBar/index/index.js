@@ -1,6 +1,7 @@
 // pages/index/index.js
-Page({
+import Notify from '@vant/weapp/notify/notify'
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -17,19 +18,21 @@ Page({
       success: function () {
         console.log('jumpToQuote success')
       },
-      fail: function () {
-        console.log('jumToQuote fail')
+      fail: function (err) {
+        console.log('jumpToQuote fail: ', err)
+        Notify('跳转失败，请检查跳转路径是否正确！')
       }
     })
   },
-  jumpToQuoteDetailOptions: function () { 
+  jumpToQuoteDetailOptions: function () {
     wx.navigateTo({
       url: '/pages/quoteDetailOptions/quoteDetailOptions',
       success: function () {
         console.log('jumpToQuoteDetail success')
       },
-      fail: function () {
-        console.log('jumToQuoteDetail fail')
+      fail: function (err) {
+        console.log('jumpToQuoteDetail fail: ', err)
+        Notify('跳转失败，请检查跳转路径是否正确！')
       }
     })
   },

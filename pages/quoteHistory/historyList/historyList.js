@@ -1,4 +1,6 @@
 // pages/quoteHistory/historyList/historyList.js
+import Notify from '@vant/weapp/notify/notify'
+
 const timeFormaterFn = require('time-formater')
 const app = getApp()
 const serverIP = app.globalData.serverIP
@@ -127,6 +129,13 @@ Page({
 
         that.setData({
           renderListArr: currentListArr
+        })
+      },
+      fail: function (err) {
+        console.log(err)
+        Notify({
+          message: '报价记录加载错误，请重新进入该页面！',
+          duration: 0
         })
       }
     })

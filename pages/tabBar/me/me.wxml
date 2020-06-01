@@ -38,10 +38,10 @@
   <block wx:elif="{{authority === 'admin'}}">
     <!-- 个人中心功能 -->
     <view class="user__functions">
-      <van-cell url="/pages/quoteHistory/historyList/historyList" custom-class="van-cell-height" title-class="van-cell-title" title="查询记录" is-link></van-cell>
+      <van-cell url="/pages/quoteHistory/historyList/historyList" custom-class="van-cell-height" title-class="van-cell-title" title="报价记录" is-link></van-cell>
       <van-cell url="/pages/functions/setParams/setParams" custom-class="van-cell-height" title-class="van-cell-title" title="参数设置" is-link></van-cell>
       <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="企业信息" is-link></van-cell>
-      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="问题反馈" border="{{false}}" is-link></van-cell>
+      <van-cell custom-class="van-cell-height" title-class="van-cell-title" title="建议反馈" border="{{false}}" is-link></van-cell>
     </view>
   </block>
   <!-- 个人中心功能 -->

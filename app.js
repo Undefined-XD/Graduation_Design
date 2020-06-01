@@ -35,6 +35,7 @@ App({
   },
   globalData: {
     // serverIP: 'http://localhost:8080'
-    serverIP: 'http://47.98.43.70:8088'
+    // serverIP: 'http://47.98.43.70:8088'
+    serverIP: 'https://www.blazzz.xyz'
   }
 })

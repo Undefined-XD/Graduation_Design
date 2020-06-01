@@ -1,4 +1,6 @@
 // pages/quoteRecommend/quoteRecommend.js
+import Notify from '@vant/weapp/notify/notify'
+
 const app = getApp()
 const serverIP = app.globalData.serverIP
 
@@ -51,7 +53,7 @@ Page({
         // 获取其他单价参数
         wx.request({
           // url: 'http://localhost:8080?table=other_unit_prices&manipulation=retrieve&mark=other_unit_prices_retrieve',
-          url: 'http://47.98.43.70:8088?table=other_unit_prices&manipulation=retrieve&mark=other_unit_prices_retrieve',
+          url: `${serverIP}?table=other_unit_prices&manipulation=retrieve&mark=other_unit_prices_retrieve`,
           header: {
             'Content-Type': 'application/json'
           },
@@ -59,6 +61,13 @@ Page({
             // console.log('res', res.data[0])
             that.setData({
               otherUnitPrices: res.data[0]
+            })
+          },
+          fail: function (err) {
+            console.log(err)
+            Notify({
+              message: '请求参数失败，请重新进入该页面！',
+              duration: 0
             })
           }
         })
@@ -79,6 +88,13 @@ Page({
           // console.log(res.data[0])
           that.setData({
             baseOptions: res.data[0]
+          })
+        },
+        fail: function (err) {
+          console.log(err)
+          Notify({
+            message: '请求参数失败，请重新进入该页面！',
+            duration: 0
           })
         }
       })
@@ -123,6 +139,16 @@ Page({
         success: function (res) {
           that.setData({
             totalMoney: res.data * 100
+          })
+        },
+        fail: function (err) {
+          console.log(err)
+          Notify({
+            message: '报价计算错误，请重新进入该页面！',
+            duration: 0
+          })
+          that.setData({
+            totalMoney: '???'
           })
         }
       })

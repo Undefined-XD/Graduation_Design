@@ -163,3 +163,4 @@
   <view class="overlay__content">
   </view>
 </van-overlay> -->
+<van-notify id="van-notify" />

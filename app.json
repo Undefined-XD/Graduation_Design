@@ -44,11 +44,11 @@
     "list": [
       {
         "pagePath": "pages/tabBar/index/index",
-        "text": "首页"
+        "text": "报价首页"
       },
       {
         "pagePath": "pages/tabBar/me/me",
-        "text": "个人中心"
+        "text": "管理中心"
       }
     ]
   }

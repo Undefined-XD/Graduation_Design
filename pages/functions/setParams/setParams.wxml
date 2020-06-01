@@ -45,3 +45,4 @@
   </view>
 </van-dialog>
 <!-- <button bindtap="http">http</button> -->
+<van-notify id="van-notify" />

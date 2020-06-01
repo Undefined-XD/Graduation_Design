@@ -1,4 +1,6 @@
 // pages/functions/setParams/setParams.js
+import Notify from '@vant/weapp/notify/notify'
+
 const app = getApp()
 const serverIP = app.globalData.serverIP
 
@@ -130,6 +132,13 @@ Page({
         console.log(res.data)
         that.setData({
           settingArr: res.data[0]
+        })
+      },
+      fail: function (err) {
+        console.log(err)
+        Notify({
+          message: '请求参数错误，请重新进入该页面！',
+          duration: 0
         })
       }
     })

@@ -1,5 +1,6 @@
 // pages/main/quote.js
 import Dialog from '@vant/weapp/dialog/dialog'
+import Notify from '@vant/weapp/notify/notify'
 
 const util = require('../../functions/utils2')
 const app = getApp()
@@ -157,6 +158,9 @@ Page({
                 exposure: data.otherUnitPrices['PS版'],
                 proofing: data.otherUnitPrices['打样费']
               })
+          },
+          fail: function () {
+
           }
         })
       })
@@ -241,6 +245,12 @@ Page({
         that.setData({
           totalMoney: res.data
         })
+      },
+      fail: function (err) {
+        console.log(err)
+        that.setData({
+          totalMoney: '???'
+        })
       }
     })
 
@@ -272,6 +282,13 @@ Page({
         console.log('res', res.data[0])
         that.setData({
           'options.otherUnitPrices': res.data[0]
+        })
+      },
+      fail: function (err) {
+        console.log(err)
+        Notify({
+          message: '请求参数错误，请重新进入该页面！',
+          duration: 0
         })
       }
     })

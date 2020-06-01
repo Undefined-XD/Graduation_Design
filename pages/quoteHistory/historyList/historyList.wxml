@@ -28,4 +28,4 @@
     </block>
   </view>
 </view>
-<!-- <wxs module="formater" src="../formater.wxs"></wxs> -->
+<van-notify id="van-notify" />
