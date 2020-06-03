@@ -39,6 +39,7 @@
 /* 个人中心用户头像 */
 .user__avatar {
   position: relative;
+  margin-left: 20rpx;
   margin-right: 20rpx;
   width: 120rpx;
   height: 120rpx;
@@ -49,20 +50,21 @@
 
 /* 用户信息 */
 .user__info {
-  padding: 20rpx 0;
+  padding-top: 20rpx;
   box-sizing: border-box;
   flex-grow: 1;
   height: 120rpx;
-  line-height: 40rpx;
+  line-height: 52rpx;
 }
 
 /* 用户昵称 */
-.user-name {
+.user__name {
+  font-size: 38rpx;
   font-weight: bold;
 }
 
 /* 用户权限 */
-.user-authority {
+.user__authority {
   font-size: 20rpx;
 }
 

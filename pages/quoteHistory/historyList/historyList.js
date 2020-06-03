@@ -121,6 +121,8 @@ Page({
           accurateListArr: []
         })
 
+        console.log(that.data.allListArr)
+
         // 遍历区分不同报价类型，分别进行存储用以列表渲染
         formattedListArr.forEach(categoryDevidedFn, that)
 

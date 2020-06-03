@@ -106,10 +106,42 @@ Page({
   },
   // 选择寄送类型
   checkDelivery: function (e) {
+    const that = this
     const delivery = e.target.dataset.delivery
     this.setData({
       'options.delivery': delivery
     })
+
+    if (delivery === '寄送') {
+      wx.navigateTo({
+        url: '/pages/map/map',
+        events: {
+          // 为指定事件添加一个监听器，获取被打开页面传送到当前页面的数据
+          acceptDataFromOpenedPage: function (data) {
+            that.setData({
+              destination: data.destination,
+              address: data.address,
+              distance: data.distance,
+              markers: data.markers
+            })
+
+            console.log({
+              destination: data.destination,
+              address: data.destinationName,
+              distance: data.distance,
+              markers: data.markers
+            })
+          }
+        },
+        success: function (res) {
+          // 通过eventChannel向被打开页面传送数据
+          res.eventChannel.emit('acceptDataFromOpenerPage', {
+            destination: that.data.destination || '',
+            markers: that.data.markers || []
+          })
+        }
+      })
+    }
   },
   // 显示遮罩层
   showOverlay: function () {
@@ -129,7 +161,9 @@ Page({
       pages: data.pages,
       albums: data.albums,
       bookBinding: data.bookBinding,
-      delivery: data.delivery
+      delivery: data.delivery,
+      address: that.data.address,
+      distance: that.data.distance
     }
 
     Dialog.confirm({
@@ -226,7 +260,9 @@ Page({
       ps: data.otherUnitPrices['PS版'],
       film: data.otherUnitPrices['菲林'],
       layout: data.otherUnitPrices['设计费'],
-      proofing: data.otherUnitPrices['打样费']
+      proofing: data.otherUnitPrices['打样费'],
+      address: data.address,
+      distance: data.distance
     }
 
     console.log('items', items)

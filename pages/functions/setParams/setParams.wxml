@@ -41,8 +41,8 @@
       <input class="edit-dialog__input" value="{{editedValue}}" type="digit" focus="{{true}}" maxlength="9" bind:input="checkInput" />
       元
     </view>
-    <view class="dialog__tip" style="opacity:{{isInputFormatWrong ? 1 : 0}}">提示：输入的值格式不正确！</view>
+    <view class="dialog__tip" style="opacity:{{isInputFormatWrong ? 1 : 0}}">提示：输入值的格式不正确！</view>
   </view>
 </van-dialog>
-<!-- <button bindtap="http">http</button> -->
+
 <van-notify id="van-notify" />

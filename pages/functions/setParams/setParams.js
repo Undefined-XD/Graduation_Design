@@ -56,7 +56,7 @@ Page({
   checkInput: function (e) {
     const inputValue = e.detail.value
     // 验证整数或者小数
-    const reg = /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g
+    const reg = /^[+]?(0|([1-9]\d*))(\.\d+)?$/g
 
     this.setData({
       isInputFormatWrong: !reg.test(inputValue),
@@ -85,20 +85,24 @@ Page({
             value: that.data.editedValue
           },
           success: function (res) {
+            // 更新参数
             that.onLoad()
+          },
+          fail: function (err) {
+            console.log(err)
+            Notify({
+              message: '数据库同步新参数值出现错误，请重新尝试！',
+              duration: 0
+            })
           }
         })
       }
     }
-
     // 修改值和错误文本提示进行重置
     this.setData({
       editedValue: '',
       isInputFormatWrong: false
     })
-
-    // 重新加载页面，请求新的数据
-    this.onLoad()
   },
 
   /**

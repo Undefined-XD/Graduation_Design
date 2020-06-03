@@ -39,6 +39,8 @@
           {{quoteInfo.book_binding}}
         </view>
         <view class="paper__option-content" wx:if="{{item==='寄送类型'}}">{{quoteInfo.delivery}}</view>
+        <view class="paper__option-content" wx:if="{{item==='寄送地址'}}">{{quoteInfo.delivery === '自提' ? '无' : quoteInfo.address}}</view>
+        <view class="paper__option-content" wx:if="{{item==='寄送距离'}}">{{quoteInfo.delivery === '自提' ? '无' : quoteInfo.distance}}</view>
       </view>
     </block>
   </view>

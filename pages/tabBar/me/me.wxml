@@ -11,7 +11,8 @@
       <view class="user__name">
         <open-data type="userNickName" />
       </view>
-      <text class="user-authority">管理员</text>
+      <!-- <text class="user-authority">管理员</text> -->
+      <van-tag type="primary">管理员</van-tag>
     </view>
   </view>
   <!-- 用户权限功能区 -->

@@ -11,14 +11,14 @@
   <van-cell-group class="van-field-group">
     <van-field label="纸张规格" value="{{ baseOptions.paper_class }}" placeholder="" readonly />
     <van-field label="纸张开数" value="{{ customerOptions.foldTimes }}" placeholder="" readonly />
-    <van-field label="内页数量" value="{{ customerOptions.pages }}" placeholder="" readonly />
-    <van-field label="画册册数" value="{{ customerOptions.albums }}" placeholder="" readonly />
+    <van-field label="内页数量" value="{{ customerOptions.pages }} P" placeholder="" readonly />
+    <van-field label="画册册数" value="{{ customerOptions.albums }} 册" placeholder="" readonly />
   </van-cell-group>
   <van-cell-group class="van-field-group">
-    <van-field label="版面费用" value="{{ otherUnitPrices['设计费'] || otherUnitPrices['layout'] }}" placeholder="" readonly />
-    <van-field label="胶片费用" value="{{ otherUnitPrices['菲林'] || otherUnitPrices['film'] }}" placeholder="" readonly />
-    <van-field label="晒版费用" value="{{ otherUnitPrices['PS版'] || otherUnitPrices['exposure'] }}" placeholder="" readonly />
-    <van-field label="打样费用" value="{{ otherUnitPrices['打样费'] || otherUnitPrices['proofing'] }}" placeholder="" readonly />
+    <van-field label="版面费用" value="{{ otherUnitPrices['设计费'] || otherUnitPrices['layout'] }} 元" placeholder="" readonly />
+    <van-field label="胶片费用" value="{{ otherUnitPrices['菲林'] || otherUnitPrices['film'] }} 元" placeholder="" readonly />
+    <van-field label="晒版费用" value="{{ otherUnitPrices['PS版'] || otherUnitPrices['exposure'] }} 元" placeholder="" readonly />
+    <van-field label="打样费用" value="{{ otherUnitPrices['打样费'] || otherUnitPrices['proofing'] }} 元" placeholder="" readonly />
   </van-cell-group>
   <van-cell-group class="van-field-group">
     <van-field label="烫印方式" value="{{ customerOptions.stamping || '无' }}" placeholder="" readonly />
@@ -26,6 +26,11 @@
     <van-field label="寄送类型" value="{{ customerOptions.delivery }}" placeholder="" readonly />
     <!-- <van-field  label="" value="{{ value }}" placeholder="" readonly /> -->
   </van-cell-group>
-  <van-submit-bar price="{{ totalMoney }}" button-text="保存记录" />
+  <!-- <van-submit-bar price="{{ totalMoney }}" button-text="" /> -->
+  <view class="total-price-bar">
+
+      合计：<text class="price">￥{{totalMoney}}</text>
+
+  </view>
 </view>
 <van-notify id="van-notify" />

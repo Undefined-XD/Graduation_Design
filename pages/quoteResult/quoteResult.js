@@ -66,6 +66,7 @@ Page({
     // 成功通知
     Notify({ type: 'success', message: '保存成功！' })
 
+    console.log(that.data)
     const items = {
       timeStamp: `'${new Date().valueOf().toString()}'`,
       customer_name: `'${thatData.annotation || '未定义'}'`,
@@ -84,7 +85,9 @@ Page({
       design: thatData.allParams.layout,
       film: thatData.allParams.film,
       exposure: thatData.allParams.exposure,
-      proof: thatData.allParams.proofing
+      proof: thatData.allParams.proofing,
+      address: `'${thatData.address}'`,
+      distance: `'${thatData.distance}'`
     }
     console.log(items)
 
@@ -160,7 +163,9 @@ Page({
       totalPricesFormated: quoteOptions.totalPrices.toLocaleString(),
       coverWeight: quoteOptions.coverWeight,
       contentWeight: quoteOptions.contentWeight,
-      recommendType: recommendType
+      recommendType: recommendType,
+      address: quoteOptions.address,
+      distance: quoteOptions.distance
     })
 
     if (this.data.totalPrices === '???') {

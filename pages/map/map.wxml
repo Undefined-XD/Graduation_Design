@@ -1,0 +1,19 @@
+<!-- pages/map/map.wxml -->
+<view class="map__input">
+  <input bindinput="bindInput" placeholder="目的地搜索" />
+</view>
+<view class="map__tips" style="display:{{displayStatus}}">
+  <view class="map__tips-items" bindtouchstart="bindSearch" data-keywords="{{i.district + i.name}}"  wx:for="{{tips}}" wx:for-item="i">
+    {{i.district + i.name}}
+  </view>
+</view>
+<view class="map__box">
+  <map id="navi_map" longitude="120.343226" latitude="30.314284" scale="12" markers="{{markers}}" polyline="{{polyline}}" bindtap="bindTap"></map>
+</view>
+<view class="map__control">
+  <view class="text">发货点距离目的地：{{distance || '？'}}</view>
+  <view class="map__buttons">
+    <van-button round type="info" size="small" bindtap="clearAddress">清除目的地</van-button>
+    <van-button round type="primary" size="small" bindtap="returnAddress">保存目的地</van-button>
+  </view>
+</view>
